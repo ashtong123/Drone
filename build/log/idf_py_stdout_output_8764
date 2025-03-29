@@ -1,0 +1,144 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15620
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.5 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Mar 28 2025 21:31:54[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=07cbch ( 31932) map[0m
+[0;32mI (115) esp_image: segment 1: paddr=00017ce4 vaddr=3ff80000 size=00004h (     4) load[0m
+[0;32mI (115) esp_image: segment 2: paddr=00017cf0 vaddr=3ffb0000 size=020ach (  8364) load[0m
+[0;32mI (124) esp_image: segment 3: paddr=00019da4 vaddr=40080000 size=06274h ( 25204) load[0m
+[0;32mI (139) esp_image: segment 4: paddr=00020020 vaddr=400d0020 size=12408h ( 74760) map[0m
+[0;32mI (165) esp_image: segment 5: paddr=00032430 vaddr=40086274 size=05fd8h ( 24536) load[0m
+[0;32mI (181) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (181) boot: Disabling RNG early entropy source...[0m
+[0;32mI (193) cpu_start: Multicore app[0m
+[0;32mI (202) cpu_start: Pro cpu start user code[0m
+[0;32mI (202) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (202) cpu_start: Application information:[0m
+[0;32mI (205) cpu_start: Project name:     main[0m
+[0;32mI (210) cpu_start: App version:      b60b77c-dirty[0m
+[0;32mI (215) cpu_start: Compile time:     Mar 29 2025 11:18:09[0m
+[0;32mI (221) cpu_start: ELF file SHA256:  856460a1c...[0m
+[0;32mI (227) cpu_start: ESP-IDF:          v5.2.5[0m
+[0;32mI (232) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (236) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (241) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (246) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (253) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (259) heap_init: At 3FFB29B0 len 0002D650 (181 KiB): DRAM[0m
+[0;32mI (265) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (272) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (278) heap_init: At 4008C24C len 00013DB4 (79 KiB): IRAM[0m
+[0;32mI (285) spi_flash: detected chip: generic[0m
+[0;32mI (289) spi_flash: flash io: dio[0m
+[0;33mW (293) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (307) main_task: Started on CPU0[0m
+[0;32mI (317) main_task: Calling app_main()[0m
+[0;32mI (317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (1317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (1817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (2317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (2817) DRONE: ADC2 CHANNEL[0] Raw Data: 1067[0m
+[0;32mI (3317) DRONE: ADC2 CHANNEL[0] Raw Data: 1069[0m
+[0;32mI (3817) DRONE: ADC2 CHANNEL[0] Raw Data: 1984[0m
+[0;32mI (4317) DRONE: ADC2 CHANNEL[0] Raw Data: 2667[0m
+[0;32mI (4817) DRONE: ADC2 CHANNEL[0] Raw Data: 2659[0m
+[0;32mI (5317) DRONE: ADC2 CHANNEL[0] Raw Data: 2662[0m
+[0;32mI (5817) DRONE: ADC2 CHANNEL[0] Raw Data: 2256[0m
+[0;32mI (6317) DRONE: ADC2 CHANNEL[0] Raw Data: 2132[0m
+[0;32mI (6817) DRONE: ADC2 CHANNEL[0] Raw Data: 1855[0m
+[0;32mI (7317) DRONE: ADC2 CHANNEL[0] Raw Data: 1404[0m
+[0;32mI (7817) DRONE: ADC2 CHANNEL[0] Raw Data: 1287[0m
+[0;32mI (8317) DRONE: ADC2 CHANNEL[0] Raw Data: 1023[0m
+[0;32mI (8817) DRONE: ADC2 CHANNEL[0] Raw Data: 917[0m
+[0;32mI (9317) DRONE: ADC2 CHANNEL[0] Raw Data: 921[0m
+[0;32mI (9817) DRONE: ADC2 CHANNEL[0] Raw Data: 918[0m
+[0;32mI (10317) DRONE: ADC2 CHANNEL[0] Raw Data: 918[0m
+[0;32mI (10817) DRONE: ADC2 CHANNEL[0] Raw Data: 918[0m
+[0;32mI (11317) DRONE: ADC2 CHANNEL[0] Raw Data: 919[0m
+[0;32mI (11817) DRONE: ADC2 CHANNEL[0] Raw Data: 919[0m
+[0;32mI (12317) DRONE: ADC2 CHANNEL[0] Raw Data: 920[0m
+[0;32mI (12817) DRONE: ADC2 CHANNEL[0] Raw Data: 922[0m
+[0;32mI (13317) DRONE: ADC2 CHANNEL[0] Raw Data: 0[0m
+[0;32mI (13817) DRONE: ADC2 CHANNEL[0] Raw Data: 0[0m
+[0;32mI (14317) DRONE: ADC2 CHANNEL[0] Raw Data: 129[0m
+[0;32mI (14817) DRONE: ADC2 CHANNEL[0] Raw Data: 326[0m
+[0;32mI (15317) DRONE: ADC2 CHANNEL[0] Raw Data: 511[0m
+[0;32mI (15817) DRONE: ADC2 CHANNEL[0] Raw Data: 589[0m
+[0;32mI (16317) DRONE: ADC2 CHANNEL[0] Raw Data: 2229[0m
+[0;32mI (16817) DRONE: ADC2 CHANNEL[0] Raw Data: 2457[0m
+[0;32mI (17317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (17817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (18317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (18817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (19317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (19817) DRONE: ADC2 CHANNEL[0] Raw Data: 3402[0m
+[0;32mI (20317) DRONE: ADC2 CHANNEL[0] Raw Data: 2466[0m
+[0;32mI (20817) DRONE: ADC2 CHANNEL[0] Raw Data: 2112[0m
+[0;32mI (21317) DRONE: ADC2 CHANNEL[0] Raw Data: 1692[0m
+[0;32mI (21817) DRONE: ADC2 CHANNEL[0] Raw Data: 1691[0m
+[0;32mI (22317) DRONE: ADC2 CHANNEL[0] Raw Data: 1419[0m
+[0;32mI (22817) DRONE: ADC2 CHANNEL[0] Raw Data: 1075[0m
+[0;32mI (23317) DRONE: ADC2 CHANNEL[0] Raw Data: 718[0m
+[0;32mI (23817) DRONE: ADC2 CHANNEL[0] Raw Data: 469[0m
+[0;32mI (24317) DRONE: ADC2 CHANNEL[0] Raw Data: 470[0m
+[0;32mI (24817) DRONE: ADC2 CHANNEL[0] Raw Data: 469[0m
+[0;32mI (25317) DRONE: ADC2 CHANNEL[0] Raw Data: 1638[0m
+[0;32mI (25817) DRONE: ADC2 CHANNEL[0] Raw Data: 3203[0m
+[0;32mI (26317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (26817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (27317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (27817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (28317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (28817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (29317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (29817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (30317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (30817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (31317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (31817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (32317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (32817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (33317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (33817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (34317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (34817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (35317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (35817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (36317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (36817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (37317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (37817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (38317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (38817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (39317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (39817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (40317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (40817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (41317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (41817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (42317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (42817) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
+[0;32mI (43317) DRONE: ADC2 CHANNEL[0] Raw Data: 4095[0m
