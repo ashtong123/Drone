@@ -1,35 +1,14 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C6 | ESP32-H2 | ESP32-P4 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+Where I left off:
 
-# _Sample project_
+4/3/25:
+Wrote initializer and configrator component for ESP I2C interface for use with gyroscope/accelerometer module.
+Need to do a more in-depth reading of the gy/acc datasheet to figure out how to format message send/receive. This should be done in main/main.c using the i2c_master_transmit(), i2c_master_receive, and i2c_master_transmit_receive() functions described here: 
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+https://docs.espressif.com/projects/esp-idf/en/v5.2.5/esp32/api-reference/peripherals/i2c.html#_CPPv419i2c_master_transmit23i2c_master_dev_handle_tPK7uint8_t6size_ti
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+Once that is done, I can begin testing, probably by using the logic analyzer and/or connecting the gy521 to the ESP32 and sending/receiving actual messages.
 
+4/9/25:
+Added some code to send and receive messages to the gy/acc module. Specifically, the code added to the main method attempts to read from some of the gy/acc registers. The registers it attempts to read from contain the gyroscope and acceloremeter x, y, z readings.
 
-
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
-
-## Example folder contents
-
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
-
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
-
-Below is short explanation of remaining files in the project folder.
-
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+The next step is to set up the hardware and test out the code. If everything works, the raw data read from the registers will be printed to the ESP log. In the more likely event that everything does not work, I can break out a logic analyzer and sniff the messages directly and see where things are behaving differently than expected. 

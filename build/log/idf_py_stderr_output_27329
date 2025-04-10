@@ -1,0 +1,182 @@
+[0;33m--- esp-idf-monitor 1.5.0 on /dev/ttyUSB0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+[0m
+[0;33m--- 0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+[0m
+[0;33m--- 0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d81e8: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+[0m
+[0;33m--- 0x40014c1d: hci_dbg_reset_rx_cnt_cmd_handler in ROM
+0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m--- 0x400d81e5: mcpwm_ll_generator_set_action_on_timer_event at /home/acg/esp/esp-idf/components/hal/esp32/include/hal/mcpwm_ll.h:793
+0x400d8637: mcpwm_generator_set_actions_on_timer_event at /home/acg/esp/esp-idf/components/driver/mcpwm/mcpwm_gen.c:199
+0x400d4863: app_main at /home/acg/Programming/Drone/main/main.c:62
+0x400e4fac: main_task at /home/acg/esp/esp-idf/components/freertos/app_startup.c:208
+0x40085d85: vPortTaskWrapper at /home/acg/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0m

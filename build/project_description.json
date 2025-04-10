@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "main",
-    "project_version":    "b60b77c-dirty",
+    "project_version":    "6596add-dirty",
     "project_path":       "/home/acg/Programming/Drone",
     "idf_path":           "/home/acg/esp/esp-idf",
     "build_dir":          "/home/acg/Programming/Drone/build",
@@ -25,9 +25,24 @@
         "COMPONENT_KCONFIGS_PROJBUILD" : "/home/acg/esp/esp-idf/components/bootloader/Kconfig.projbuild;/home/acg/esp/esp-idf/components/esp_app_format/Kconfig.projbuild;/home/acg/esp/esp-idf/components/esp_rom/Kconfig.projbuild;/home/acg/esp/esp-idf/components/esptool_py/Kconfig.projbuild;/home/acg/esp/esp-idf/components/partition_table/Kconfig.projbuild"
     },
     "common_component_reqs": [ "cxx", "newlib", "freertos", "esp_hw_support", "heap", "log", "soc", "hal", "esp_rom", "esp_common", "esp_system", "xtensa" ],
-    "build_components" : [ "app_update", "bootloader", "bootloader_support", "cxx", "driver", "efuse", "esp_adc", "esp_app_format", "esp_bootloader_format", "esp_common", "esp_hw_support", "esp_mm", "esp_partition", "esp_pm", "esp_ringbuf", "esp_rom", "esp_system", "esp_timer", "esptool_py", "freertos", "hal", "heap", "log", "main", "mbedtls", "newlib", "partition_table", "pthread", "soc", "spi_flash", "xtensa", "" ],
-    "build_component_paths" : [ "/home/acg/esp/esp-idf/components/app_update", "/home/acg/esp/esp-idf/components/bootloader", "/home/acg/esp/esp-idf/components/bootloader_support", "/home/acg/esp/esp-idf/components/cxx", "/home/acg/esp/esp-idf/components/driver", "/home/acg/esp/esp-idf/components/efuse", "/home/acg/esp/esp-idf/components/esp_adc", "/home/acg/esp/esp-idf/components/esp_app_format", "/home/acg/esp/esp-idf/components/esp_bootloader_format", "/home/acg/esp/esp-idf/components/esp_common", "/home/acg/esp/esp-idf/components/esp_hw_support", "/home/acg/esp/esp-idf/components/esp_mm", "/home/acg/esp/esp-idf/components/esp_partition", "/home/acg/esp/esp-idf/components/esp_pm", "/home/acg/esp/esp-idf/components/esp_ringbuf", "/home/acg/esp/esp-idf/components/esp_rom", "/home/acg/esp/esp-idf/components/esp_system", "/home/acg/esp/esp-idf/components/esp_timer", "/home/acg/esp/esp-idf/components/esptool_py", "/home/acg/esp/esp-idf/components/freertos", "/home/acg/esp/esp-idf/components/hal", "/home/acg/esp/esp-idf/components/heap", "/home/acg/esp/esp-idf/components/log", "/home/acg/Programming/Drone/main", "/home/acg/esp/esp-idf/components/mbedtls", "/home/acg/esp/esp-idf/components/newlib", "/home/acg/esp/esp-idf/components/partition_table", "/home/acg/esp/esp-idf/components/pthread", "/home/acg/esp/esp-idf/components/soc", "/home/acg/esp/esp-idf/components/spi_flash", "/home/acg/esp/esp-idf/components/xtensa", "" ],
+    "build_components" : [ "adc_init_config", "app_update", "bootloader", "bootloader_support", "cxx", "driver", "efuse", "esp_adc", "esp_app_format", "esp_bootloader_format", "esp_common", "esp_hw_support", "esp_mm", "esp_partition", "esp_pm", "esp_ringbuf", "esp_rom", "esp_system", "esp_timer", "esptool_py", "freertos", "hal", "heap", "i2c_master_init_config", "log", "main", "mbedtls", "mcpwm_init_config", "newlib", "partition_table", "pthread", "soc", "spi_flash", "xtensa", "" ],
+    "build_component_paths" : [ "/home/acg/Programming/Drone/components/adc_init_config", "/home/acg/esp/esp-idf/components/app_update", "/home/acg/esp/esp-idf/components/bootloader", "/home/acg/esp/esp-idf/components/bootloader_support", "/home/acg/esp/esp-idf/components/cxx", "/home/acg/esp/esp-idf/components/driver", "/home/acg/esp/esp-idf/components/efuse", "/home/acg/esp/esp-idf/components/esp_adc", "/home/acg/esp/esp-idf/components/esp_app_format", "/home/acg/esp/esp-idf/components/esp_bootloader_format", "/home/acg/esp/esp-idf/components/esp_common", "/home/acg/esp/esp-idf/components/esp_hw_support", "/home/acg/esp/esp-idf/components/esp_mm", "/home/acg/esp/esp-idf/components/esp_partition", "/home/acg/esp/esp-idf/components/esp_pm", "/home/acg/esp/esp-idf/components/esp_ringbuf", "/home/acg/esp/esp-idf/components/esp_rom", "/home/acg/esp/esp-idf/components/esp_system", "/home/acg/esp/esp-idf/components/esp_timer", "/home/acg/esp/esp-idf/components/esptool_py", "/home/acg/esp/esp-idf/components/freertos", "/home/acg/esp/esp-idf/components/hal", "/home/acg/esp/esp-idf/components/heap", "/home/acg/Programming/Drone/components/i2c_master_init_config", "/home/acg/esp/esp-idf/components/log", "/home/acg/Programming/Drone/main", "/home/acg/esp/esp-idf/components/mbedtls", "/home/acg/Programming/Drone/components/mcpwm_init_config", "/home/acg/esp/esp-idf/components/newlib", "/home/acg/esp/esp-idf/components/partition_table", "/home/acg/esp/esp-idf/components/pthread", "/home/acg/esp/esp-idf/components/soc", "/home/acg/esp/esp-idf/components/spi_flash", "/home/acg/esp/esp-idf/components/xtensa", "" ],
     "build_component_info" : {
+        "adc_init_config": {
+            "alias": "idf::adc_init_config",
+            "target": "___idf_adc_init_config",
+            "prefix": "idf",
+            "dir": "/home/acg/Programming/Drone/components/adc_init_config",
+            "type": "LIBRARY",
+            "lib": "__idf_adc_init_config",
+            "reqs": [ "esp_adc" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "/home/acg/Programming/Drone/build/esp-idf/adc_init_config/libadc_init_config.a",
+            "sources": [ "/home/acg/Programming/Drone/components/adc_init_config/adc_init_config.c" ],
+            "include_dirs": [ "include" ]
+        },
         "app_update": {
             "alias": "idf::app_update",
             "target": "___idf_app_update",
@@ -358,6 +373,21 @@
             "sources": [ "/home/acg/esp/esp-idf/components/heap/heap_caps_base.c", "/home/acg/esp/esp-idf/components/heap/heap_caps.c", "/home/acg/esp/esp-idf/components/heap/heap_caps_init.c", "/home/acg/esp/esp-idf/components/heap/multi_heap.c", "/home/acg/esp/esp-idf/components/heap/tlsf/tlsf.c", "/home/acg/esp/esp-idf/components/heap/port/memory_layout_utils.c", "/home/acg/esp/esp-idf/components/heap/port/esp32/memory_layout.c" ],
             "include_dirs": [ "include" ]
         },
+        "i2c_master_init_config": {
+            "alias": "idf::i2c_master_init_config",
+            "target": "___idf_i2c_master_init_config",
+            "prefix": "idf",
+            "dir": "/home/acg/Programming/Drone/components/i2c_master_init_config",
+            "type": "LIBRARY",
+            "lib": "__idf_i2c_master_init_config",
+            "reqs": [ "driver" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "/home/acg/Programming/Drone/build/esp-idf/i2c_master_init_config/libi2c_master_init_config.a",
+            "sources": [ "/home/acg/Programming/Drone/components/i2c_master_init_config/i2c_master_init_config.c" ],
+            "include_dirs": [ "include" ]
+        },
         "log": {
             "alias": "idf::log",
             "target": "___idf_log",
@@ -402,6 +432,21 @@
             "file": "/home/acg/Programming/Drone/build/esp-idf/mbedtls/libmbedtls.a",
             "sources": [ "/home/acg/esp/esp-idf/components/mbedtls/esp_crt_bundle/esp_crt_bundle.c", "/home/acg/Programming/Drone/build/x509_crt_bundle.S" ],
             "include_dirs": [ "port/include", "mbedtls/include", "mbedtls/library", "esp_crt_bundle/include" ]
+        },
+        "mcpwm_init_config": {
+            "alias": "idf::mcpwm_init_config",
+            "target": "___idf_mcpwm_init_config",
+            "prefix": "idf",
+            "dir": "/home/acg/Programming/Drone/components/mcpwm_init_config",
+            "type": "LIBRARY",
+            "lib": "__idf_mcpwm_init_config",
+            "reqs": [ "driver" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "/home/acg/Programming/Drone/build/esp-idf/mcpwm_init_config/libmcpwm_init_config.a",
+            "sources": [ "/home/acg/Programming/Drone/components/mcpwm_init_config/mcpwm_init_config.c" ],
+            "include_dirs": [ "include" ]
         },
         "newlib": {
             "alias": "idf::newlib",
@@ -1442,6 +1487,42 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "include_dirs": [ "." ]
+        },
+        "adc_init_config": {
+            "alias": "idf::adc_init_config",
+            "target": "___idf_adc_init_config",
+            "prefix": "idf",
+            "dir": "/home/acg/Programming/Drone/components/adc_init_config",
+            "lib": "__idf_adc_init_config",
+            "reqs": [ "esp_adc" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "include_dirs": [ "include" ]
+        },
+        "i2c_master_init_config": {
+            "alias": "idf::i2c_master_init_config",
+            "target": "___idf_i2c_master_init_config",
+            "prefix": "idf",
+            "dir": "/home/acg/Programming/Drone/components/i2c_master_init_config",
+            "lib": "__idf_i2c_master_init_config",
+            "reqs": [ "driver" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "include_dirs": [ "include" ]
+        },
+        "mcpwm_init_config": {
+            "alias": "idf::mcpwm_init_config",
+            "target": "___idf_mcpwm_init_config",
+            "prefix": "idf",
+            "dir": "/home/acg/Programming/Drone/components/mcpwm_init_config",
+            "lib": "__idf_mcpwm_init_config",
+            "reqs": [ "driver" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "include_dirs": [ "include" ]
         }
     },
     "debug_prefix_map_gdbinit": "",
