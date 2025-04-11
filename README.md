@@ -12,3 +12,6 @@ Once that is done, I can begin testing, probably by using the logic analyzer and
 Added some code to send and receive messages to the gy/acc module. Specifically, the code added to the main method attempts to read from some of the gy/acc registers. The registers it attempts to read from contain the gyroscope and acceloremeter x, y, z readings.
 
 The next step is to set up the hardware and test out the code. If everything works, the raw data read from the registers will be printed to the ESP log. In the more likely event that everything does not work, I can break out a logic analyzer and sniff the messages directly and see where things are behaving differently than expected. 
+
+4/11/25:
+I set up the hardware and tested the code. It appears that the accelerometer reading is correct (x = 0g, y = 0g, z = 1g when on a flat surface). The gyroscope reading indicated about 5deg/s x, and 0deg/s y, z. I am not sure if this is to be expected or not.
