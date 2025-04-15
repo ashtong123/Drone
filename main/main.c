@@ -50,7 +50,7 @@ void mcpwm_config_main()
 
     //MCPWM GENERATOR CONFIG
     mcpwm_gen_handle_t mcpwm_gen_handle = NULL;
-    mcpwm_generator_config(16, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle);
+    mcpwm_generator_config(27, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle);
 
     
     //SETUP MCPWM TIMER
@@ -104,22 +104,27 @@ void i2c_master_config_main()
 void app_main(void)
 {
     const TickType_t xDelay = 3000 / portTICK_PERIOD_MS; 
-    adc_oneshot_config_main(&adc_oneshot_unit_handle);
-    mcpwm_config_main(&mcpwm_cmpr_handle);    
+    /* ----- INITIALIZE THE COMPONENTS BEING USED ----- */
+//    adc_oneshot_config_main(&adc_oneshot_unit_handle);    //INIT ADC ONESHOT
+    mcpwm_config_main(&mcpwm_cmpr_handle);                //INIT MCPWM
+    i2c_master_config_main(&i2c_master_dev_handle);         //INIT I2C MASTER
+    
     /* ----- READ FROM ADC_ONESHOT AND USE VALUE TO SET MCPWM COMPARE VALUE ----- */
     while(1) {
         //READ ADC VALUE (ANALOG INPUT FOR MOTOR SPEED)
-        ESP_ERROR_CHECK(adc_oneshot_read(adc_oneshot_unit_handle, ADC_CHANNEL_0, &adc_raw[0][0]));
+//        ESP_ERROR_CHECK(adc_oneshot_read(adc_oneshot_unit_handle, ADC_CHANNEL_0, &adc_raw[0][0]));
         
         //SET MCPWM DUTY CYCLE BASED ON ADC VALUE READ PREVIOUSLY
-        ESP_ERROR_CHECK(mcpwm_comparator_set_compare_value(mcpwm_cmpr_handle, (1000*adc_raw[0][0]/4095)));
+        ESP_ERROR_CHECK(mcpwm_comparator_set_compare_value(mcpwm_cmpr_handle, (1000)));
         //OUTPUT ADC READ AND MCPWM VALUE TO LOG
-        ESP_LOGI(TAG, "ADC ONESHOT READ: %d, MCPWM COMPARE VALUE SET TO %d\n", adc_raw[0][0],  (1000*adc_raw[0][0]/4095));
+//        ESP_LOGI(TAG, "ADC ONESHOT READ: %d, MCPWM COMPARE VALUE SET TO %d\n", adc_raw[0][0],  (1000*adc_raw[0][0]/4095));
         
         //READ GYRO/ACCEL VALUES FROM I2C SLAVE DEVICE
         //
         //for register addresses and meaning see the instructions on page 37:
         //https://www.haoyuelectronics.com/Attachment/GY-521/mpu6050.pdf
+        
+        //initialize i2c_master_device_handle
         const uint8_t gyro_reg[1] = {0x43}; //gyro out register
         const uint8_t accel_reg[1] = {0x3b}; //accel out register                                                      
         uint8_t gyro_read_buffer[6];  
@@ -133,11 +138,16 @@ void app_main(void)
                     sizeof(gyro_read_buffer),
                     3000));
         //print read_buffer values 
-        ESP_LOGI(TAG, "GYRO RAW :\n");
-        for(int i = 0; i < 6; ++i) {
-            ESP_LOGI(TAG, "%x", gyro_read_buffer[i]);
-        ESP_LOGI(TAG, "\n");
-        }
+        //collate high and low bits into single value for x,y,z
+        int16_t gyro_xyz[3];
+        for(int i = 0; i < 3; ++i)
+            gyro_xyz[i] = (gyro_read_buffer[2*i] << 8) + gyro_read_buffer[2*i+1];
+        
+        ESP_LOGI(TAG, 
+                "Gyro x: %.2f deg/s, gyro y: %.2f deg/s, gyro z: %.2f deg/s\n", 
+                gyro_xyz[0]/131.0, 
+                gyro_xyz[1]/131.0, 
+                gyro_xyz[2]/131.0);
         
         //read accel x,y,z values into read_buffer
         ESP_ERROR_CHECK(i2c_master_transmit_receive(
@@ -147,13 +157,24 @@ void app_main(void)
                     accel_read_buffer,
                     sizeof(accel_read_buffer),
                     3000));
+
+        int16_t accel_xyz[3];
+        for(int i = 0; i < 3; ++i)
+            accel_xyz[i] = (accel_read_buffer[2*i] << 8) + accel_read_buffer[2*i+1];
+        
+        ESP_LOGI(TAG,
+                "Accel x: %.2f g, accel y: %.2f g, accel z: %.2f g\n",
+                accel_xyz[0]/16384.0,
+                accel_xyz[1]/16384.0,
+                accel_xyz[2]/16384.0);
         //print read_buffer values 
+        /*
         ESP_LOGI(TAG, "ACCEL RAW :\n");
         for(int i = 0; i < 6; ++i) {
             ESP_LOGI(TAG, "%x", accel_read_buffer[i]);
         ESP_LOGI(TAG, "\n");
         }
-               
+        */     
         vTaskDelay(xDelay);
     }
 }

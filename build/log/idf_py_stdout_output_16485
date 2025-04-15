@@ -1,0 +1,588 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15620
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.5 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  1 2025 20:41:47[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=09474h ( 38004) map[0m
+[0;32mI (117) esp_image: segment 1: paddr=0001949c vaddr=3ffb0000 size=020f4h (  8436) load[0m
+[0;32mI (121) esp_image: segment 2: paddr=0001b598 vaddr=40080000 size=04a80h ( 19072) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=14c18h ( 85016) map[0m
+[0;32mI (161) esp_image: segment 4: paddr=00034c40 vaddr=40084a80 size=07d58h ( 32088) load[0m
+[0;32mI (180) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (180) boot: Disabling RNG early entropy source...[0m
+[0;32mI (191) cpu_start: Multicore app[0m
+[0;32mI (201) cpu_start: Pro cpu start user code[0m
+[0;32mI (201) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (201) cpu_start: Application information:[0m
+[0;32mI (204) cpu_start: Project name:     main[0m
+[0;32mI (208) cpu_start: App version:      0a6c25f-dirty[0m
+[0;32mI (214) cpu_start: Compile time:     Apr 10 2025 20:04:58[0m
+[0;32mI (220) cpu_start: ELF file SHA256:  3d3506be4...[0m
+[0;32mI (225) cpu_start: ESP-IDF:          v5.2.5[0m
+[0;32mI (230) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (235) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (240) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (245) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (252) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (258) heap_init: At 3FFB29A0 len 0002D660 (181 KiB): DRAM[0m
+[0;32mI (264) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (270) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (277) heap_init: At 4008C7D8 len 00013828 (78 KiB): IRAM[0m
+[0;32mI (284) spi_flash: detected chip: generic[0m
+[0;32mI (288) spi_flash: flash io: dio[0m
+[0;33mW (292) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (305) main_task: Started on CPU0[0m
+[0;32mI (315) main_task: Calling app_main()[0m
+[0;33mW (315) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (325) gpio: GPIO[21]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (335) gpio: GPIO[22]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (345) DRONE: GYRO RAW :
+[0m
+[0;32mI (345) DRONE: fd[0m
+[0;32mI (345) DRONE: 
+[0m
+[0;32mI (355) DRONE: 63[0m
+[0;32mI (355) DRONE: 
+[0m
+[0;32mI (355) DRONE: 0[0m
+[0;32mI (355) DRONE: 
+[0m
+[0;32mI (365) DRONE: 98[0m
+[0;32mI (365) DRONE: 
+[0m
+[0;32mI (365) DRONE: ff[0m
+[0;32mI (365) DRONE: 
+[0m
+[0;32mI (375) DRONE: da[0m
+[0;32mI (375) DRONE: 
+[0m
+[0;32mI (375) DRONE: ACCEL RAW :
+[0m
+[0;32mI (375) DRONE: 8[0m
+[0;32mI (385) DRONE: 
+[0m
+[0;32mI (385) DRONE: 4[0m
+[0;32mI (385) DRONE: 
+[0m
+[0;32mI (385) DRONE: 8[0m
+[0;32mI (395) DRONE: 
+[0m
+[0;32mI (395) DRONE: ec[0m
+[0;32mI (395) DRONE: 
+[0m
+[0;32mI (395) DRONE: 3c[0m
+[0;32mI (405) DRONE: 
+[0m
+[0;32mI (405) DRONE: 0[0m
+[0;32mI (405) DRONE: 
+[0m
+[0;33mW (3405) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (3405) gpio: GPIO[21]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (3415) gpio: GPIO[22]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (3425) DRONE: GYRO RAW :
+[0m
+[0;32mI (3425) DRONE: fd[0m
+[0;32mI (3425) DRONE: 
+[0m
+[0;32mI (3435) DRONE: 3[0m
+[0;32mI (3435) DRONE: 
+[0m
+[0;32mI (3435) DRONE: 3[0m
+[0;32mI (3435) DRONE: 
+[0m
+[0;32mI (3445) DRONE: 25[0m
+[0;32mI (3445) DRONE: 
+[0m
+[0;32mI (3445) DRONE: fe[0m
+[0;32mI (3455) DRONE: 
+[0m
+[0;32mI (3455) DRONE: fd[0m
+[0;32mI (3455) DRONE: 
+[0m
+[0;32mI (3455) DRONE: ACCEL RAW :
+[0m
+[0;32mI (3465) DRONE: db[0m
+[0;32mI (3465) DRONE: 
+[0m
+[0;32mI (3465) DRONE: 40[0m
+[0;32mI (3465) DRONE: 
+[0m
+[0;32mI (3475) DRONE: f7[0m
+[0;32mI (3475) DRONE: 
+[0m
+[0;32mI (3475) DRONE: d0[0m
+[0;32mI (3475) DRONE: 
+[0m
+[0;32mI (3485) DRONE: 30[0m
+[0;32mI (3485) DRONE: 
+[0m
+[0;32mI (3485) DRONE: a0[0m
+[0;32mI (3485) DRONE: 
+[0m
+[0;31mE (6495) i2c.common: i2c_acquire_bus_handle(109): acquire bus failed, no free bus[0m
+[0;31mE (6495) i2c.master: i2c_new_master_bus(908): I2C bus acquire failed[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x400d8639  PS      : 0x00060730  A0      : 0x800d7400  A1      : 0x3ffb4b40  
+A2      : 0x00000000  A3      : 0x3f405444  A4      : 0x3f40590c  A5      : 0x3ffb4b80  
+A6      : 0x00000000  A7      : 0x0000000c  A8      : 0x800e4bb0  A9      : 0x3ffb4af0  
+A10     : 0x00000050  A11     : 0x3ffb4b80  A12     : 0x3ffb4b60  A13     : 0x0000000c  
+A14     : 0x3ffb4b30  A15     : 0x0000000c  SAR     : 0x00000004  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x00000000  LBEG    : 0x400014fd  LEND    : 0x4000150d  LCOUNT  : 0xfffffffb  
+
+
+Backtrace: 0x400d8636:0x3ffb4b40 0x400d73fd:0x3ffb4b70 0x400d80fb:0x3ffb4ba0 0x400d49bd:0x3ffb4bf0 0x400d4874:0x3ffb4c30 0x400d4898:0x3ffb4c70 0x400e42e8:0x3ffb4ca0 0x400862d1:0x3ffb4cd0
+
+
+
+
+ELF file SHA256: 3d3506be4
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15620
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.5 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  1 2025 20:41:47[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (76) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (91) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=09474h ( 38004) map[0m
+[0;32mI (117) esp_image: segment 1: paddr=0001949c vaddr=3ffb0000 size=020f4h (  8436) load[0m
+[0;32mI (121) esp_image: segment 2: paddr=0001b598 vaddr=40080000 size=04a80h ( 19072) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=14c18h ( 85016) map[0m
+[0;32mI (161) esp_image: segment 4: paddr=00034c40 vaddr=40084a80 size=07d58h ( 32088) load[0m
+[0;32mI (180) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (180) boot: Disabling RNG early entropy source...[0m
+[0;32mI (191) cpu_start: Multicore app[0m
+[0;32mI (201) cpu_start: Pro cpu start user code[0m
+[0;32mI (201) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (201) cpu_start: Application information:[0m
+[0;32mI (204) cpu_start: Project name:     main[0m
+[0;32mI (208) cpu_start: App version:      0a6c25f-dirty[0m
+[0;32mI (214) cpu_start: Compile time:     Apr 10 2025 20:04:58[0m
+[0;32mI (220) cpu_start: ELF file SHA256:  3d3506be4...[0m
+[0;32mI (225) cpu_start: ESP-IDF:          v5.2.5[0m
+[0;32mI (230) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (235) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (240) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (245) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (252) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (258) heap_init: At 3FFB29A0 len 0002D660 (181 KiB): DRAM[0m
+[0;32mI (264) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (270) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (277) heap_init: At 4008C7D8 len 00013828 (78 KiB): IRAM[0m
+[0;32mI (284) spi_flash: detected chip: generic[0m
+[0;32mI (288) spi_flash: flash io: dio[0m
+[0;33mW (291) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (305) main_task: Started on CPU0[0m
+[0;32mI (315) main_task: Calling app_main()[0m
+[0;33mW (315) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (325) gpio: GPIO[21]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (335) gpio: GPIO[22]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (345) DRONE: GYRO RAW :
+[0m
+[0;32mI (345) DRONE: 2c[0m
+[0;32mI (345) DRONE: 
+[0m
+[0;32mI (355) DRONE: 9[0m
+[0;32mI (355) DRONE: 
+[0m
+[0;32mI (355) DRONE: e1[0m
+[0;32mI (355) DRONE: 
+[0m
+[0;32mI (365) DRONE: 47[0m
+[0;32mI (365) DRONE: 
+[0m
+[0;32mI (365) DRONE: 28[0m
+[0;32mI (365) DRONE: 
+[0m
+[0;32mI (375) DRONE: d8[0m
+[0;32mI (375) DRONE: 
+[0m
+[0;32mI (375) DRONE: ACCEL RAW :
+[0m
+[0;32mI (375) DRONE: db[0m
+[0;32mI (385) DRONE: 
+[0m
+[0;32mI (385) DRONE: 90[0m
+[0;32mI (385) DRONE: 
+[0m
+[0;32mI (385) DRONE: f3[0m
+[0;32mI (395) DRONE: 
+[0m
+[0;32mI (395) DRONE: 68[0m
+[0;32mI (395) DRONE: 
+[0m
+[0;32mI (395) DRONE: 50[0m
+[0;32mI (405) DRONE: 
+[0m
+[0;32mI (405) DRONE: 70[0m
+[0;32mI (405) DRONE: 
+[0m
+[0;33mW (3405) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (3405) gpio: GPIO[21]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (3415) gpio: GPIO[22]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (3425) DRONE: GYRO RAW :
+[0m
+[0;32mI (3425) DRONE: 16[0m
+[0;32mI (3425) DRONE: 
+[0m
+[0;32mI (3435) DRONE: 58[0m
+[0;32mI (3435) DRONE: 
+[0m
+[0;32mI (3435) DRONE: f1[0m
+[0;32mI (3445) DRONE: 
+[0m
+[0;32mI (3445) DRONE: c2[0m
+[0;32mI (3445) DRONE: 
+[0m
+[0;32mI (3445) DRONE: 2[0m
+[0;32mI (3455) DRONE: 
+[0m
+[0;32mI (3455) DRONE: b4[0m
+[0;32mI (3455) DRONE: 
+[0m
+[0;32mI (3455) DRONE: ACCEL RAW :
+[0m
+[0;32mI (3465) DRONE: e9[0m
+[0;32mI (3465) DRONE: 
+[0m
+[0;32mI (3465) DRONE: 64[0m
+[0;32mI (3465) DRONE: 
+[0m
+[0;32mI (3475) DRONE: fd[0m
+[0;32mI (3475) DRONE: 
+[0m
+[0;32mI (3475) DRONE: 74[0m
+[0;32mI (3475) DRONE: 
+[0m
+[0;32mI (3485) DRONE: 56[0m
+[0;32mI (3485) DRONE: 
+[0m
+[0;32mI (3485) DRONE: 58[0m
+[0;32mI (3485) DRONE: 
+[0m
+[0;31mE (6495) i2c.common: i2c_acquire_bus_handle(109): acquire bus failed, no free bus[0m
+[0;31mE (6495) i2c.master: i2c_new_master_bus(908): I2C bus acquire failed[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x400d8639  PS      : 0x00060730  A0      : 0x800d7400  A1      : 0x3ffb4b40  
+A2      : 0x00000000  A3      : 0x3f405444  A4      : 0x3f40590c  A5      : 0x3ffb4b80  
+A6      : 0x00000000  A7      : 0x0000000c  A8      : 0x800e4bb0  A9      : 0x3ffb4af0  
+A10     : 0x00000050  A11     : 0x3ffb4b80  A12     : 0x3ffb4b60  A13     : 0x0000000c  
+A14     : 0x3ffb4b30  A15     : 0x0000000c  SAR     : 0x00000004  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x00000000  LBEG    : 0x400014fd  LEND    : 0x4000150d  LCOUNT  : 0xfffffffb  
+
+
+Backtrace: 0x400d8636:0x3ffb4b40 0x400d73fd:0x3ffb4b70 0x400d80fb:0x3ffb4ba0 0x400d49bd:0x3ffb4bf0 0x400d4874:0x3ffb4c30 0x400d4898:0x3ffb4c70 0x400e42e8:0x3ffb4ca0 0x400862d1:0x3ffb4cd0
+
+
+
+
+ELF file SHA256: 3d3506be4
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15620
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.5 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  1 2025 20:41:47[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (76) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (91) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=09474h ( 38004) map[0m
+[0;32mI (117) esp_image: segment 1: paddr=0001949c vaddr=3ffb0000 size=020f4h (  8436) load[0m
+[0;32mI (121) esp_image: segment 2: paddr=0001b598 vaddr=40080000 size=04a80h ( 19072) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=14c18h ( 85016) map[0m
+[0;32mI (161) esp_image: segment 4: paddr=00034c40 vaddr=40084a80 size=07d58h ( 32088) load[0m
+[0;32mI (180) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (180) boot: Disabling RNG early entropy source...[0m
+[0;32mI (191) cpu_start: Multicore app[0m
+[0;32mI (201) cpu_start: Pro cpu start user code[0m
+[0;32mI (201) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (201) cpu_start: Application information:[0m
+[0;32mI (204) cpu_start: Project name:     main[0m
+[0;32mI (208) cpu_start: App version:      0a6c25f-dirty[0m
+[0;32mI (214) cpu_start: Compile time:     Apr 10 2025 20:04:58[0m
+[0;32mI (220) cpu_start: ELF file SHA256:  3d3506be4...[0m
+[0;32mI (225) cpu_start: ESP-IDF:          v5.2.5[0m
+[0;32mI (230) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (235) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (240) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (245) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (252) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (258) heap_init: At 3FFB29A0 len 0002D660 (181 KiB): DRAM[0m
+[0;32mI (264) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (270) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (277) heap_init: At 4008C7D8 len 00013828 (78 KiB): IRAM[0m
+[0;32mI (284) spi_flash: detected chip: generic[0m
+[0;32mI (288) spi_flash: flash io: dio[0m
+[0;33mW (291) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (305) main_task: Started on CPU0[0m
+[0;32mI (315) main_task: Calling app_main()[0m
+[0;33mW (315) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (325) gpio: GPIO[21]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (335) gpio: GPIO[22]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (345) DRONE: GYRO RAW :
+[0m
+[0;32mI (345) DRONE: 2[0m
+[0;32mI (345) DRONE: 
+[0m
+[0;32mI (355) DRONE: e7[0m
+[0;32mI (355) DRONE: 
+[0m
+[0;32mI (355) DRONE: 9[0m
+[0;32mI (355) DRONE: 
+[0m
+[0;32mI (365) DRONE: 56[0m
+[0;32mI (365) DRONE: 
+[0m
+[0;32mI (365) DRONE: 3[0m
+[0;32mI (365) DRONE: 
+[0m
+[0;32mI (365) DRONE: 86[0m
+[0;32mI (375) DRONE: 
+[0m
+[0;32mI (375) DRONE: ACCEL RAW :
+[0m
+[0;32mI (375) DRONE: fb[0m
+[0;32mI (385) DRONE: 
+[0m
+[0;32mI (385) DRONE: e8[0m
+[0;32mI (385) DRONE: 
+[0m
+[0;32mI (385) DRONE: a[0m
+[0;32mI (395) DRONE: 
+[0m
+[0;32mI (395) DRONE: b4[0m
+[0;32mI (395) DRONE: 
+[0m
+[0;32mI (395) DRONE: 3f[0m
+[0;32mI (405) DRONE: 
+[0m
+[0;32mI (405) DRONE: 98[0m
+[0;32mI (405) DRONE: 
+[0m
+[0;33mW (3405) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (3405) gpio: GPIO[21]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (3415) gpio: GPIO[22]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (3425) DRONE: GYRO RAW :
+[0m
+[0;32mI (3425) DRONE: fd[0m
+[0;32mI (3425) DRONE: 
+[0m
+[0;32mI (3435) DRONE: 42[0m
+[0;32mI (3435) DRONE: 
+[0m
+[0;32mI (3435) DRONE: ff[0m
+[0;32mI (3445) DRONE: 
+[0m
+[0;32mI (3445) DRONE: e3[0m
+[0;32mI (3445) DRONE: 
+[0m
+[0;32mI (3445) DRONE: ff[0m
+[0;32mI (3455) DRONE: 
+[0m
+[0;32mI (3455) DRONE: c0[0m
+[0;32mI (3455) DRONE: 
+[0m
+[0;32mI (3455) DRONE: ACCEL RAW :
+[0m
+[0;32mI (3465) DRONE: 0[0m
+[0;32mI (3465) DRONE: 
+[0m
+[0;32mI (3465) DRONE: 38[0m
+[0;32mI (3465) DRONE: 
+[0m
+[0;32mI (3475) DRONE: 6[0m
+[0;32mI (3475) DRONE: 
+[0m
+[0;32mI (3475) DRONE: 10[0m
+[0;32mI (3475) DRONE: 
+[0m
+[0;32mI (3485) DRONE: 3c[0m
+[0;32mI (3485) DRONE: 
+[0m
+[0;32mI (3485) DRONE: 88[0m
+[0;32mI (3485) DRONE: 
+[0m
+[0;31mE (6495) i2c.common: i2c_acquire_bus_handle(109): acquire bus failed, no free bus[0m
+[0;31mE (6495) i2c.master: i2c_new_master_bus(908): I2C bus acquire failed[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x400d8639  PS      : 0x00060730  A0      : 0x800d7400  A1      : 0x3ffb4b40  
+A2      : 0x00000000  A3      : 0x3f405444  A4      : 0x3f40590c  A5      : 0x3ffb4b80  
+A6      : 0x00000000  A7      : 0x0000000c  A8      : 0x800e4bb0  A9      : 0x3ffb4af0  
+A10     : 0x00000050  A11     : 0x3ffb4b80  A12     : 0x3ffb4b60  A13     : 0x0000000c  
+A14     : 0x3ffb4b30  A15     : 0x0000000c  SAR     : 0x00000004  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x00000000  LBEG    : 0x400014fd  LEND    : 0x4000150d  LCOUNT  : 0xfffffffb  
+
+
+Backtrace: 0x400d8636:0x3ffb4b40 0x400d73fd:0x3ffb4b70 0x400d80fb:0x3ffb4ba0 0x400d49bd:0x3ffb4bf0 0x400d4874:0x3ffb4c30 0x400d4898:0x3ffb4c70 0x400e42e8:0x3ffb4ca0 0x400862d1:0x3ffb4cd0
+
+
+
+
+ELF file SHA256: 3d3506be4
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15620
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.5 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  1 2025 20:41:47[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (76) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (91) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=09474h ( 38004) map[0m
+[0;32mI (117) esp_image: segment 1: paddr=0001949c vaddr=3ffb0000 size=020f4h (  8436) load[0m
+[0;32mI (121) esp_image: segment 2: paddr=0001b598 vaddr=40080000 size=04a80h ( 19072) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=14c18h ( 85016) map[0m
+[0;32mI (161) esp_image: segment 4: paddr=00034c40 vaddr=40084a80 size=07d58h ( 32088) load[0m
+[0;32mI (180) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (180) boot: Disabling RNG early entropy source...[0m
+[0;32mI (191) cpu_start: Multicore app[0m
+[0;32mI (201) cpu_start: Pro cpu start user code[0m
+[0;32mI (201) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (201) cpu_start: Application information:[0m
+[0;32mI (204) cpu_start: Project name:     main[0m
+[0;32mI (208) cpu_start: App version:      0a6c25f-dirty[0m
+[0;32mI (214) cpu_start: Compile time:     Apr 10 2025 20:04:58[0m
+[0;32mI (220) cpu_start: ELF file SHA256:  3d3506be4...[0m
+[0;32mI (225) cpu_start: ESP-IDF:          v5.2.5[0m
+[0;32mI (230) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (235) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (240) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (245) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (252) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (258) heap_init: At 3FFB29A0 len 0002D660 (181 KiB): DRAM[0m
+[0;32mI (264) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (270) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (277) heap_init: At 4008C7D8 len 00013828 (78 KiB): IRAM[0m
+[0;32mI (284) spi_flash: detected chip: generic[0m
+[0;32mI (288) spi_flash: flash io: dio[0m
+[0;33mW (291) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (305) main_task: Started on CPU0[0m
+[0;32mI (315) main_task: Calling app_main()[0m
+[0;33mW (315) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (325) gpio: GPIO[21]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (335) gpio: GPIO[22]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (345) DRONE: GYRO RAW :
+[0m
+[0;32mI (345) DRONE: fd[0m
+[0;32mI (345) DRONE: 
+[0m
+[0;32mI (355) DRONE: 60[0m
+[0;32mI (355) DRONE: 
+[0m
+[0;32mI (355) DRONE: fd[0m
+[0;32mI (355) DRONE: 
+[0m
+[0;32mI (365) DRONE: f5[0m
+[0;32mI (365) DRONE: 
+[0m
+[0;32mI (365) DRONE: ff[0m
+[0;32mI (365) DRONE: 
+[0m
+[0;32mI (375) DRONE: c8[0m
+[0;32mI (375) DRONE: 
+[0m
+[0;32mI (375) DRONE: ACCEL RAW :
+[0m
+[0;32mI (375) DRONE: 3[0m
+[0;32mI (385) DRONE: 
+[0m
+[0;32mI (385) DRONE: 98[0m
+[0;32mI (385) DRONE: 
+[0m
+[0;32mI (385) DRONE: 6[0m
+[0;32mI (395) DRONE: 
+[0m
+[0;32mI (395) DRONE: dc[0m
+[0;32mI (395) DRONE: 
+[0m
+[0;32mI (395) DRONE: 3d[0m
+[0;32mI (405) DRONE: 
+[0m
+[0;32mI (405) DRONE: c0[0m
+[0;32mI (405) DRONE: 
+[0m
