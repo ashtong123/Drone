@@ -6,15 +6,18 @@ cmake_minimum_required(VERSION 3.16)
 
 # OPTIONAL PROJECT VARIABLES CAN GO HERE (below cmake_min... and above include...):
 # https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html#optional-project-variables
-set(COMPONENTS 
-    "main" 
-    "esp_adc" 
-    "log" 
-    "freertos" 
-    "driver"            # mcpwm, i2c
-    "adc_init_config" 
-    "mcpwm_init_config"
-    "i2c_master_init_config")
+
+#set(COMPONENTS 
+#    "main" 
+#    "esp_adc" 
+#    "log" 
+#    "freertos" 
+#    "driver"            # mcpwm, i2c
+#    "nvs_flash"         # nimble
+#    "bt" 
+#    "adc_init_config" 
+#    "mcpwm_init_config"
+#    "i2c_master_init_config")
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(main)

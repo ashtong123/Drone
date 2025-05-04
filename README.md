@@ -26,3 +26,8 @@ The bluetooth control will be based on the examples in esp-idf/examples/bluetoot
 https://github.com/espressif/esp-idf/tree/master/examples/bluetooth/ble_get_started/nimble/
 
 I would like to be able to control the device from my cellphone, the examples use a cellphone app, so I think this should be possible.
+
+~~~~~ update 2:
+after significant struggle, I was able to make th Beacon example work in my project. The main issue was, I suspect, with the sdkconfig file. I needed to enable bt and enable nimble in that sdkconfig file for everything else to work. 
+
+Originally, I had organized the bluetooth code into a separate component, along with the adc, i2c, and mcpwm code, primarily for consistency and organizational purposes. However, while troubleshooting, I deleted the component and instead organized the bluetooth code into the main component under the "srcs" and "include" directories. However, as I already mentioned, I don't believe that the organization of the code into a component was the reason for the issues I was experiencing. I am busy now, but when I have some time later I plan to recreate the nimble component and move the bluetooth code back into it. 

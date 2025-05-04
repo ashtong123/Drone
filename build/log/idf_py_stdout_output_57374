@@ -1,0 +1,150 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15620
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.5 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time May  4 2025 12:12:15[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=14194h ( 82324) map[0m
+[0;32mI (132) esp_image: segment 1: paddr=000241bc vaddr=3ffbdb60 size=04b40h ( 19264) load[0m
+[0;32mI (140) esp_image: segment 2: paddr=00028d04 vaddr=40080000 size=07314h ( 29460) load[0m
+[0;32mI (152) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=580a4h (360612) map[0m
+[0;32mI (275) esp_image: segment 4: paddr=000880cc vaddr=40087314 size=10288h ( 66184) load[0m
+[0;32mI (313) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (314) boot: Disabling RNG early entropy source...[0m
+[0;32mI (325) cpu_start: Multicore app[0m
+[0;32mI (334) cpu_start: Pro cpu start user code[0m
+[0;32mI (334) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (334) cpu_start: Application information:[0m
+[0;32mI (337) cpu_start: Project name:     main[0m
+[0;32mI (342) cpu_start: App version:      6c14d97-dirty[0m
+[0;32mI (348) cpu_start: Compile time:     May  4 2025 12:14:29[0m
+[0;32mI (354) cpu_start: ELF file SHA256:  336b9f318...[0m
+[0;32mI (359) cpu_start: ESP-IDF:          v5.2.5[0m
+[0;32mI (364) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (369) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (373) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (378) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (385) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (391) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (397) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (404) heap_init: At 3FFC5768 len 0001A898 (106 KiB): DRAM[0m
+[0;32mI (410) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (416) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (423) heap_init: At 4009759C len 00008A64 (34 KiB): IRAM[0m
+[0;32mI (430) spi_flash: detected chip: generic[0m
+[0;32mI (433) spi_flash: flash io: dio[0m
+[0;33mW (437) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (451) coexist: coex firmware version: 994b23e[0m
+[0;32mI (457) main_task: Started on CPU0[0m
+[0;32mI (467) main_task: Calling app_main()[0m
+[0;32mI (467) gpio: GPIO[27]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;33mW (467) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (487) gpio: GPIO[21]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (497) gpio: GPIO[22]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (537) BTDM_INIT: BT controller compile version [f7360be][0m
+[0;32mI (537) BTDM_INIT: Bluetooth MAC: d4:8c:49:57:23:7a[0m
+[0;32mI (537) phy_init: phy_version 4840,02e0d70,Sep  2 2024,19:39:07[0m
+[0;32mI (857) DRONE: nimble host task has been started![0m
+[0;32mI (857) DRONE: Gyro x: -5.95 deg/s, gyro y: 250.13 deg/s, gyro z: -0.41 deg/s
+[0m
+[0;32mI (867) DRONE: Accel x: 0.12 g, accel y: 0.33 g, accel z: 0.89 g
+[0m
+[0;32mI (887) DRONE: device address: 7A:23:57:49:8C:D4[0m
+[0;32mI (897) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (897) NimBLE: disc_mode=2[0m
+[0;32mI (897) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (907) NimBLE: 
+[0m
+[0;32mI (917) DRONE: advertising started![0m
+[0;32mI (3867) DRONE: Gyro x: -5.60 deg/s, gyro y: 250.13 deg/s, gyro z: -0.39 deg/s
+[0m
+[0;32mI (3867) DRONE: Accel x: 0.12 g, accel y: 0.32 g, accel z: 0.90 g
+[0m
+[0;32mI (6867) DRONE: Gyro x: -3.49 deg/s, gyro y: 250.13 deg/s, gyro z: -0.65 deg/s
+[0m
+[0;32mI (6867) DRONE: Accel x: 0.12 g, accel y: 0.31 g, accel z: 0.89 g
+[0m
+����������������������������������������������������������������5.08 deg/s, gyro y: 250.13 deg/s, gyro z: -0.24 deg/s
+[0m
+[0;32mI (9867) DRONE: Accel x: 0.12 g, accel y: 0.32 g, accel z: 0.89 g
+[0m
+[0;32mI (12867) DRONE: Gyro x: -5.29 deg/s, gyro y: 250.13 deg/s, gyro z: -0.14 deg/s
+[0m
+[0;32mI (12867) DRONE: Accel x: 0.12 g, accel y: 0.32 g, accel z: 0.90 g
+[0m
+[0;32mI (15867) DRONE: Gyro x: -5.08 deg/s, gyro y: 250.13 deg/s, gyro z: -0.34 deg/s
+[0m
+[0;32mI (15867) DRONE: Accel x: 0.12 g, accel y: 0.32 g, accel z: 0.89 g
+[0m
+[0;32mI (18867) DRONE: Gyro x: -5.31 deg/s, gyro y: 250.13 deg/s, gyro z: -0.08 deg/s
+[0m
+[0;32mI (18867) DRONE: Accel x: 0.12 g, accel y: 0.32 g, accel z: 0.89 g
+[0m
+[0;32mI (21867) DRONE: Gyro x: -5.40 deg/s, gyro y: 250.13 deg/s, gyro z: -0.07 deg/s
+[0m
+[0;32mI (21867) DRONE: Accel x: 0.13 g, accel y: 0.32 g, accel z: 0.89 g
+[0m
+[0;32mI (24867) DRONE: Gyro x: -5.12 deg/s, gyro y: 250.13 deg/s, gyro z: -0.18 deg/s
+[0m
+[0;32mI (24867) DRONE: Accel x: 0.12 g, accel y: 0.32 g, accel z: 0.90 g
+[0m
+[0;32mI (27867) DRONE: Gyro x: -5.22 deg/s, gyro y: 250.13 deg/s, gyro z: -0.05 deg/s
+[0m
+[0;32mI (27867) DRONE: Accel x: 0.11 g, accel y: 0.32 g, accel z: 0.90 g
+[0m
+[0;32mI (30867) DRONE: Gyro x: -5.21 deg/s, gyro y: 250.13 deg/s, gyro z: -0.21 deg/s
+[0m
+[0;32mI (30867) DRONE: Accel x: 0.12 g, accel y: 0.32 g, accel z: 0.90 g
+[0m
+[0;32mI (33867) DRONE: Gyro x: -5.15 deg/s, gyro y: 250.13 deg/s, gyro z: -0.07 deg/s
+[0m
+[0;32mI (33867) DRONE: Accel x: 0.12 g, accel y: 0.32 g, accel z: 0.89 g
+[0m
+[0;32mI (36867) DRONE: Gyro x: -5.29 deg/s, gyro y: 250.13 deg/s, gyro z: -0.13 deg/s
+[0m
+[0;32mI (36867) DRONE: Accel x: 0.11 g, accel y: 0.32 g, accel z: 0.89 g
+[0m
+[0;32mI (39867) DRONE: Gyro x: -5.27 deg/s, gyro y: 250.13 deg/s, gyro z: -0.22 deg/s
+[0m
+[0;32mI (39867) DRONE: Accel x: 0.13 g, accel y: 0.32 g, accel z: 0.89 g
+[0m
+[0;32mI (42867) DRONE: Gyro x: -5.34 deg/s, gyro y: 250.13 deg/s, gyro z: 0.03 deg/s
+[0m
+[0;32mI (42867) DRONE: Accel x: 0.12 g, accel y: 0.31 g, accel z: 0.90 g
+[0m
+[0;32mI (45867) DRONE: Gyro x: -4.07 deg/s, gyro y: 250.13 deg/s, gyro z: -0.21 deg/s
+[0m
+[0;32mI (45867) DRONE: Accel x: 0.12 g, accel y: 0.33 g, accel z: 0.90 g
+[0m
+[0;32mI (48867) DRONE: Gyro x: -5.08 deg/s, gyro y: 250.13 deg/s, gyro z: -0.65 deg/s
+[0m
+[0;32mI (48867) DRONE: Accel x: 0.11 g, accel y: 0.31 g, accel z: 0.90 g
+[0m
+[0;32mI (51867) DRONE: Gyro x: -4.58 deg/s, gyro y: 250.13 deg/s, gyro z: -0.27 deg/s
+[0m
+[0;32mI (51867) DRONE: Accel x: 0.11 g, accel y: 0.32 g, accel z: 0.89 g
+[0m
+����������������������������������������������������������������-18.58 deg/s, gyro y: 247.40 deg/s, gyro z: 3.68 deg/s
+[0m
+[0;32mI (54867) DRONE: Accel x: 0.19 g, accel y: 0.23 g, accel z: 0.78 g
+[0m
