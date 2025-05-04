@@ -15,3 +15,14 @@ The next step is to set up the hardware and test out the code. If everything wor
 
 4/11/25:
 I set up the hardware and tested the code. It appears that the accelerometer reading is correct (x = 0g, y = 0g, z = 1g when on a flat surface). The gyroscope reading indicated about 5deg/s x, and 0deg/s y, z. I am not sure if this is to be expected or not.
+
+5/4/25:
+After extensive testing using 1D and 2D simulations, I think it is necessary to build some hardware to determine if the simulations are actually going to be useful for PID tuning or whatever other purpose they may prove to be useful for. 
+
+Given this, I am now switching from working on purely software sim/test to a hardware-based test method. First, I am adding bluetooth control to the drone, so that tests can be started, stopped, or otherwise manipulated without physical intervention. 
+
+The bluetooth control will be based on the examples in esp-idf/examples/bluetooth/ble_get_started/nimble/* which is located at:
+
+https://github.com/espressif/esp-idf/tree/master/examples/bluetooth/ble_get_started/nimble/
+
+I would like to be able to control the device from my cellphone, the examples use a cellphone app, so I think this should be possible.
