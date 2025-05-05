@@ -6,11 +6,13 @@
 /* Includes */
 #include "gap.h"
 #include "common.h"
-#include "main.h"
+#include "led.h"
 
 /* Private function declarations */
 inline static void format_addr(char *addr_str, uint8_t addr[]);
+static void print_conn_desc(struct ble_gap_conn_desc *desc);
 static void start_advertising(void);
+static int gap_event_handler(struct ble_gap_event *event, void *arg);
 
 /* Private variables */
 static uint8_t own_addr_type;
@@ -21,6 +23,32 @@ static uint8_t esp_uri[] = {BLE_GAP_URI_PREFIX_HTTPS, '/', '/', 'e', 's', 'p', '
 inline static void format_addr(char *addr_str, uint8_t addr[]) {
     sprintf(addr_str, "%02X:%02X:%02X:%02X:%02X:%02X", addr[0], addr[1],
             addr[2], addr[3], addr[4], addr[5]);
+}
+
+static void print_conn_desc(struct ble_gap_conn_desc *desc) {
+    /* Local variables */
+    char addr_str[18] = {0};
+
+    /* Connection handle */
+    ESP_LOGI(TAG, "connection handle: %d", desc->conn_handle);
+
+    /* Local ID address */
+    format_addr(addr_str, desc->our_id_addr.val);
+    ESP_LOGI(TAG, "device id address: type=%d, value=%s",
+             desc->our_id_addr.type, addr_str);
+
+    /* Peer ID address */
+    format_addr(addr_str, desc->peer_id_addr.val);
+    ESP_LOGI(TAG, "peer id address: type=%d, value=%s", desc->peer_id_addr.type,
+             addr_str);
+
+    /* Connection info */
+    ESP_LOGI(TAG,
+             "conn_itvl=%d, conn_latency=%d, supervision_timeout=%d, "
+             "encrypted=%d, authenticated=%d, bonded=%d\n",
+             desc->conn_itvl, desc->conn_latency, desc->supervision_timeout,
+             desc->sec_state.encrypted, desc->sec_state.authenticated,
+             desc->sec_state.bonded);
 }
 
 static void start_advertising(void) {
@@ -68,6 +96,10 @@ static void start_advertising(void) {
     rsp_fields.uri = esp_uri;
     rsp_fields.uri_len = sizeof(esp_uri);
 
+    /* Set advertising interval */
+    rsp_fields.adv_itvl = BLE_GAP_ADV_ITVL_MS(500);
+    rsp_fields.adv_itvl_is_present = 1;
+
     /* Set scan response fields */
     rc = ble_gap_adv_rsp_set_fields(&rsp_fields);
     if (rc != 0) {
@@ -76,17 +108,110 @@ static void start_advertising(void) {
     }
 
     /* Set non-connetable and general discoverable mode to be a beacon */
-    adv_params.conn_mode = BLE_GAP_CONN_MODE_NON;
+    adv_params.conn_mode = BLE_GAP_CONN_MODE_UND;
     adv_params.disc_mode = BLE_GAP_DISC_MODE_GEN;
+
+    /* Set advertising interval */
+    adv_params.itvl_min = BLE_GAP_ADV_ITVL_MS(500);
+    adv_params.itvl_max = BLE_GAP_ADV_ITVL_MS(510);
 
     /* Start advertising */
     rc = ble_gap_adv_start(own_addr_type, NULL, BLE_HS_FOREVER, &adv_params,
-                           NULL, NULL);
+                           gap_event_handler, NULL);
     if (rc != 0) {
         ESP_LOGE(TAG, "failed to start advertising, error code: %d", rc);
         return;
     }
     ESP_LOGI(TAG, "advertising started!");
+}
+
+/*
+ * NimBLE applies an event-driven model to keep GAP service going
+ * gap_event_handler is a callback function registered when calling
+ * ble_gap_adv_start API and called when a GAP event arrives
+ */
+static int gap_event_handler(struct ble_gap_event *event, void *arg) {
+    /* Local variables */
+    int rc = 0;
+    struct ble_gap_conn_desc desc;
+
+    /* Handle different GAP event */
+    switch (event->type) {
+
+    /* Connect event */
+    case BLE_GAP_EVENT_CONNECT:
+        /* A new connection was established or a connection attempt failed. */
+        ESP_LOGI(TAG, "connection %s; status=%d",
+                 event->connect.status == 0 ? "established" : "failed",
+                 event->connect.status);
+
+        /* Connection succeeded */
+        if (event->connect.status == 0) {
+            /* Check connection handle */
+            rc = ble_gap_conn_find(event->connect.conn_handle, &desc);
+            if (rc != 0) {
+                ESP_LOGE(TAG,
+                         "failed to find connection by handle, error code: %d",
+                         rc);
+                return rc;
+            }
+
+            /* Print connection descriptor and turn on the LED */
+            print_conn_desc(&desc);
+            led_on();
+
+            /* Try to update connection parameters */
+            struct ble_gap_upd_params params = {.itvl_min = desc.conn_itvl,
+                                                .itvl_max = desc.conn_itvl,
+                                                .latency = 3,
+                                                .supervision_timeout =
+                                                    desc.supervision_timeout};
+            rc = ble_gap_update_params(event->connect.conn_handle, &params);
+            if (rc != 0) {
+                ESP_LOGE(
+                    TAG,
+                    "failed to update connection parameters, error code: %d",
+                    rc);
+                return rc;
+            }
+        }
+        /* Connection failed, restart advertising */
+        else {
+            start_advertising();
+        }
+        return rc;
+
+    /* Disconnect event */
+    case BLE_GAP_EVENT_DISCONNECT:
+        /* A connection was terminated, print connection descriptor */
+        ESP_LOGI(TAG, "disconnected from peer; reason=%d",
+                 event->disconnect.reason);
+
+        /* Turn off the LED */
+        led_off();
+
+        /* Restart advertising */
+        start_advertising();
+        return rc;
+
+    /* Connection parameters update event */
+    case BLE_GAP_EVENT_CONN_UPDATE:
+        /* The central has updated the connection parameters. */
+        ESP_LOGI(TAG, "connection updated; status=%d",
+                 event->conn_update.status);
+
+        /* Print connection descriptor */
+        rc = ble_gap_conn_find(event->conn_update.conn_handle, &desc);
+        if (rc != 0) {
+            ESP_LOGE(TAG, "failed to find connection by handle, error code: %d",
+                     rc);
+            return rc;
+        }
+        print_conn_desc(&desc);
+        return rc;
+    }
+
+    return rc;
 }
 
 /* Public functions */
