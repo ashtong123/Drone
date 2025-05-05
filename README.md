@@ -8,13 +8,14 @@ of the following:
  - A 3D printed frame
  - Perfboard holding the electrical components together
  
- On the software side, per the ESP32 IDF guidance, the project is split into "components", which are as follows:
-- main component --> main method, threaded functions, and initializers for each of the other components 
+On the software side, per the ESP32 IDF guidance, the project is split into "components", which are as follows:
+- main component --> main method, threaded functions, and initializing calls for each of the other components 
 - nimble component --> configuration and initialization functions for the NimBLE stack, used for remotely communicating 
 to the drone
 - mcmpwm component --> configuration and initialization functions for the motor controller PWM 
 - adc_init_config --> configuration and initialization functions for the analog to digital converter, used to convert 
-analog signals to PWM duty cycles 
+analog signals to PWM duty cycles, this may become a legacy feature - it was originally used to allow a wired potentiometer to 
+control the motor duty, but I am currently transitioning to a bluetooth based input, which would allow for direct digital control
 - i2c_master_init_config --> configuration and initialization functions for i2c master, used to communicate with the GY-521
 
 The general setup philosophy of the components is as follows:
