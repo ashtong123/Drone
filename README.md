@@ -1,33 +1,42 @@
-Where I left off:
+This project contains the firmware needed to run a quadcopter drone based on the ESP32 platform. The current hardware consists
+of the following:
+ - ESP dev board (the smaller the better)
+ - PWM controlled brushed DC motors with propellers
+	- Flyback diodes and amplifying BJT transistors for each
+ - GY-521 gyroscope/accelerometer module
+ - HC-SR04 Ultrasonic sensor module 
+ - A 3D printed frame
+ - Perfboard holding the electrical components together
+ 
+ On the software side, per the ESP32 IDF guidance, the project is split into "components", which are as follows:
+- main component --> main method, threaded functions, and initializers for each of the other components 
+- nimble component --> configuration and initialization functions for the NimBLE stack, used for remotely communicating 
+to the drone
+- mcmpwm component --> configuration and initialization functions for the motor controller PWM 
+- adc_init_config --> configuration and initialization functions for the analog to digital converter, used to convert 
+analog signals to PWM duty cycles 
+- i2c_master_init_config --> configuration and initialization functions for i2c master, used to communicate with the GY-521
 
-4/3/25:
-Wrote initializer and configrator component for ESP I2C interface for use with gyroscope/accelerometer module.
-Need to do a more in-depth reading of the gy/acc datasheet to figure out how to format message send/receive. This should be done in main/main.c using the i2c_master_transmit(), i2c_master_receive, and i2c_master_transmit_receive() functions described here: 
+The general setup philosophy of the components is as follows:
+(a) non-main component --> header and source files for functions which need to be called to initialize and configure the module,
+called "{module_name}_init_config"
+(b) main component --> for each module, contains a function "{module_name}_config_main" which holds the calls to the setup functions
+declared and defined in (a)
 
-https://docs.espressif.com/projects/esp-idf/en/v5.2.5/esp32/api-reference/peripherals/i2c.html#_CPPv419i2c_master_transmit23i2c_master_dev_handle_tPK7uint8_t6size_ti
+In addition, some components require threaded functions, which are also in the main component. Finally, some component related-code
+is used in the actual app_main() function in the main component.
 
-Once that is done, I can begin testing, probably by using the logic analyzer and/or connecting the gy521 to the ESP32 and sending/receiving actual messages.
+When building ESP32 projects, the default is to include all possible unmanaged modules in the build structure. This project 
+tries to avoid including any unnecessary code. This is accomplished by explicitly telling CMake which modules to include in the
+project-level and component-level CMakeLists.txt. 
 
-4/9/25:
-Added some code to send and receive messages to the gy/acc module. Specifically, the code added to the main method attempts to read from some of the gy/acc registers. The registers it attempts to read from contain the gyroscope and acceloremeter x, y, z readings.
+In addition, the sdkconfig file contains important configurations for the project, and will likely be updated continuously as
+the project grows
 
-The next step is to set up the hardware and test out the code. If everything works, the raw data read from the registers will be printed to the ESP log. In the more likely event that everything does not work, I can break out a logic analyzer and sniff the messages directly and see where things are behaving differently than expected. 
+This project is a work in progress and is a personal project of mine, which I am undertaking both as an intellectual challenge 
+and a serious engineering pursuit. Aside from the personal value, this project is of general value because it seeks to make the
+simplest, lightest, cheapest quadcopter drone possible. The electrical components can generally be obtained for a few dollars,  
+and the frame can be printed for free if you own a printer, or for a small fee if you don't. 
 
-4/11/25:
-I set up the hardware and tested the code. It appears that the accelerometer reading is correct (x = 0g, y = 0g, z = 1g when on a flat surface). The gyroscope reading indicated about 5deg/s x, and 0deg/s y, z. I am not sure if this is to be expected or not.
-
-5/4/25:
-After extensive testing using 1D and 2D simulations, I think it is necessary to build some hardware to determine if the simulations are actually going to be useful for PID tuning or whatever other purpose they may prove to be useful for. 
-
-Given this, I am now switching from working on purely software sim/test to a hardware-based test method. First, I am adding bluetooth control to the drone, so that tests can be started, stopped, or otherwise manipulated without physical intervention. 
-
-The bluetooth control will be based on the examples in esp-idf/examples/bluetooth/ble_get_started/nimble/* which is located at:
-
-https://github.com/espressif/esp-idf/tree/master/examples/bluetooth/ble_get_started/nimble/
-
-I would like to be able to control the device from my cellphone, the examples use a cellphone app, so I think this should be possible.
-
-Update 2:
-after significant struggle, I was able to make th Beacon example work in my project. The main issue was, I suspect, with the sdkconfig file. I needed to enable bt and enable nimble in that sdkconfig file for everything else to work. 
-
-Originally, I had organized the bluetooth code into a separate component, along with the adc, i2c, and mcpwm code, primarily for consistency and organizational purposes. However, while troubleshooting, I deleted the component and instead organized the bluetooth code into the main component under the "srcs" and "include" directories. However, as I already mentioned, I don't believe that the organization of the code into a component was the reason for the issues I was experiencing. I am busy now, but when I have some time later I plan to recreate the nimble component and move the bluetooth code back into it. 
+Due to the complexity of tuning the controller for a quadcopter drone, I plan to build several test stands and simulations to
+get approximate tunings before setting an actual quadcopter loose. These are in the related repo, drone-sim
