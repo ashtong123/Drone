@@ -1,0 +1,17 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/acg/Programming/Drone/build/bootloader/esp-idf/esptool_py && /home/acg/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/acg/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/acg/Programming/Drone/build/bootloader/bootloader.bin
+Bootloader binary size 0x68b0 bytes. 0x750 bytes (7%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/nimble/CMakeFiles/__idf_nimble.dir/src/led.c.obj
+[5/9] Linking C static library esp-idf/nimble/libnimble.a
+[6/9] Generating ld/sections.ld
+[7/9] Linking CXX executable main.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.8.1
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/acg/Programming/Drone/build/main.bin
+[9/9] cd /home/acg/Programming/Drone/build/esp-idf/esptool_py && /home/acg/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/acg/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/acg/Programming/Drone/build/partition_table/partition-table.bin /home/acg/Programming/Drone/build/main.bin
+main.bin binary size 0x88020 bytes. Smallest app partition is 0x100000 bytes. 0x77fe0 bytes (47%) free.

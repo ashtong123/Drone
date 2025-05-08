@@ -18,7 +18,7 @@ set(COMPONENTS
     "adc_init_config" 
     "mcpwm_init_config"
     "i2c_master_init_config"
-    "nimble_init_config")
+    "nimble")
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(main)

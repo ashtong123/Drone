@@ -1,5 +1,6 @@
 #include "nimble_init_config.h"
 #include "common.h"
+#include "led.h"
 
 void on_stack_reset(int reason) {
     /* On reset, print reset reason to console */
@@ -56,6 +57,10 @@ void nimble_init()
 	
     /* NimBLE host configuration initialization */
     nimble_host_config_init();
+    
+    /* Connection indication LED Init */
+    led_init();
+
     return;
 }
 

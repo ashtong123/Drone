@@ -1,0 +1,61 @@
+[1/5] cd /home/acg/Programming/Drone/build/esp-idf/esptool_py && /home/acg/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/acg/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/acg/Programming/Drone/build/partition_table/partition-table.bin /home/acg/Programming/Drone/build/main.bin
+main.bin binary size 0x87b60 bytes. Smallest app partition is 0x100000 bytes. 0x784a0 bytes (47%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cd /home/acg/Programming/Drone/build/bootloader/esp-idf/esptool_py && /home/acg/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/acg/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/acg/Programming/Drone/build/bootloader/bootloader.bin
+Bootloader binary size 0x68b0 bytes. 0x750 bytes (7%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] cd /home/acg/esp/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/acg/esp/esp-idf -D "SERIAL_TOOL=/home/acg/.espressif/python_env/idf5.2_py3.12_env/bin/python;;/home/acg/esp/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/home/acg/Programming/Drone/build -P /home/acg/esp/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 main.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.8.1
+Serial port /dev/ttyUSB0
+Connecting....
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: d4:8c:49:57:23:78
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x00097fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 26800 bytes to 16417...
+Writing at 0x00001000... (50 %)
+Writing at 0x00007897... (100 %)
+Wrote 26800 bytes (16417 compressed) at 0x00001000 in 0.8 seconds (effective 264.3 kbit/s)...
+Hash of data verified.
+Compressed 555872 bytes to 325659...
+Writing at 0x00010000... (5 %)
+Writing at 0x0001d0e8... (10 %)
+Writing at 0x00027803... (15 %)
+Writing at 0x0002d885... (20 %)
+Writing at 0x000334e1... (25 %)
+Writing at 0x00039256... (30 %)
+Writing at 0x0003f552... (35 %)
+Writing at 0x000452c0... (40 %)
+Writing at 0x0004b436... (45 %)
+Writing at 0x00051398... (50 %)
+Writing at 0x000571cb... (55 %)
+Writing at 0x0005d80f... (60 %)
+Writing at 0x0006348c... (65 %)
+Writing at 0x00068e80... (70 %)
+Writing at 0x0006ee76... (75 %)
+Writing at 0x00074ec5... (80 %)
+Writing at 0x0007ef65... (85 %)
+Writing at 0x00086add... (90 %)
+Writing at 0x0008c1ff... (95 %)
+Writing at 0x00092045... (100 %)
+Wrote 555872 bytes (325659 compressed) at 0x00010000 in 8.4 seconds (effective 526.9 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 488.2 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
