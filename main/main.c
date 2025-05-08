@@ -1,3 +1,4 @@
+/* Includes */
 #include <stdio.h>
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
@@ -6,16 +7,22 @@
 #include "i2c_master_init_config.h"
 #include "nimble_init_config.h"
 
+
+
 /* Private functions */
 static void nimble_host_task(void *param);
 
+
+
 /* Private variables */
-//const static char *TAG = "DRONE";
 static int adc_raw[2][10];
 static adc_oneshot_unit_handle_t adc_oneshot_unit_handle;
 static mcpwm_cmpr_handle_t mcpwm_cmpr_handle;
 static i2c_master_dev_handle_t i2c_master_dev_handle;
 
+
+
+/* Tasks */
 static void nimble_host_task(void *param) 
 {
     /* Task entry log */
@@ -28,6 +35,9 @@ static void nimble_host_task(void *param)
     vTaskDelete(NULL);
 }
 
+
+
+/* Configurations */
 void adc_oneshot_config_main()
 {
     /* ----- INITIALIZE AND CONFIGURE ADC_ONESHOT ----- */
@@ -118,66 +128,36 @@ void i2c_master_config_main()
     return;
 }
 
-void nimble_config_main()
-{
-    /* Local variables */
-    int rc;
-    esp_err_t ret;
 
-    /* NVS flash initialization */
-    ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES ||
-        ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
-    }
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "failed to initialize nvs flash, error code: %d ", ret);
-        return;
-    }
 
-    /* NimBLE host stack initialization */
-    ret = nimble_port_init();
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "failed to initialize nimble stack, error code: %d ",
-                 ret);
-        return;
-    }
-
-    /* GAP service initialization */
-    rc = gap_init();
-    if (rc != 0) {
-        ESP_LOGE(TAG, "failed to initialize GAP service, error code: %d", rc);
-        return;
-    }
-	
-    /* NimBLE host configuration initialization */
-    nimble_host_config_init();
-    return;
-}
-
+/* Main */
 void app_main(void)
 {
     const TickType_t xDelay = 3000 / portTICK_PERIOD_MS; 
     /* ----- INITIALIZE THE COMPONENTS BEING USED ----- */
-//    adc_oneshot_config_main(&adc_oneshot_unit_handle);    //INIT ADC ONESHOT
-    mcpwm_config_main(&mcpwm_cmpr_handle);                  //INIT MCPWM
-    i2c_master_config_main(&i2c_master_dev_handle);         //INIT I2C MASTER
-    nimble_config_main();                                   //INIT NIMBLE 
-    /* ----- START ANY THREADS ----- */
+//    adc_oneshot_config_main(&adc_oneshot_unit_handle);    //CONFIG AND INIT ADC ONESHOT
+    mcpwm_config_main(&mcpwm_cmpr_handle);                  //CONFIG AND INIT MCPWM
+    i2c_master_config_main(&i2c_master_dev_handle);         //CONFIG AND INIT I2C MASTER
+    nimble_init();                                   		//CONFIG AND INIT NIMBLE 
+    
+	
+	/* ----- START ANY THREADS ----- */
     xTaskCreate(nimble_host_task, "NimBLE Host", 4*1024, NULL, 5, NULL);
     
-    /* ----- READ FROM ADC_ONESHOT AND USE VALUE TO SET MCPWM COMPARE VALUE ----- */
+    
+	/* ----- READ FROM ADC_ONESHOT AND USE VALUE TO SET MCPWM COMPARE VALUE ----- */
     while(1) {
-        //READ ADC VALUE (ANALOG INPUT FOR MOTOR SPEED)
+        /* Read ADC Input */
 //        ESP_ERROR_CHECK(adc_oneshot_read(adc_oneshot_unit_handle, ADC_CHANNEL_0, &adc_raw[0][0]));
         
-        //SET MCPWM DUTY CYCLE BASED ON ADC VALUE READ PREVIOUSLY
+		
+        /* Set MCPWM Duty Cycle */
         ESP_ERROR_CHECK(mcpwm_comparator_set_compare_value(mcpwm_cmpr_handle, (1000)));
         //OUTPUT ADC READ AND MCPWM VALUE TO LOG
 //        ESP_LOGI(TAG, "ADC ONESHOT READ: %d, MCPWM COMPARE VALUE SET TO %d\n", adc_raw[0][0],  (1000*adc_raw[0][0]/4095));
         
-        //READ GYRO/ACCEL VALUES FROM I2C SLAVE DEVICE
+		
+        /* I2C GY521 Read */
         //
         //for register addresses and meaning see the instructions on page 37:
         //https://www.haoyuelectronics.com/Attachment/GY-521/mpu6050.pdf
