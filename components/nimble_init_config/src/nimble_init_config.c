@@ -1,5 +1,5 @@
 #include "nimble_init_config.h"
-#include "main.h"
+#include "common.h"
 
 void on_stack_reset(int reason) {
     /* On reset, print reset reason to console */

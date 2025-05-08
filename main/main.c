@@ -5,7 +5,6 @@
 #include "mcpwm_init_config.h"
 #include "i2c_master_init_config.h"
 #include "nimble_init_config.h"
-#include "main.h"
 
 /* Private functions */
 static void nimble_host_task(void *param);
@@ -151,10 +150,7 @@ void nimble_config_main()
         ESP_LOGE(TAG, "failed to initialize GAP service, error code: %d", rc);
         return;
     }
-
-    /* Store host configuration */
-    ble_store_config_init();
-
+	
     /* NimBLE host configuration initialization */
     nimble_host_config_init();
     return;

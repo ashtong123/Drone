@@ -30,6 +30,7 @@
 #include "nimble/nimble_port_freertos.h"
 
 /* Defines */
-#define DEVICE_NAME "NimBLE_Beacon"
+#define DEVICE_NAME "Drone"
+#define TAG "Drone"
 
 #endif // COMMON_H
