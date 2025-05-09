@@ -1,6 +1,7 @@
 #include "nimble_init_config.h"
 #include "common.h"
 #include "led.h"
+#include "motor.h"
 
 void on_stack_reset(int reason) {
     /* On reset, print reset reason to console */
@@ -23,7 +24,7 @@ void nimble_host_config_init(void) {
     ble_store_config_init();
 }
 
-void nimble_init()
+void nimble_init(mcpwm_cmpr_handle_t *mcpwm_cmpr_handle)
 {
     /* Local variables */
     int rc;
@@ -68,6 +69,7 @@ void nimble_init()
     
     /* Connection indication LED Init */
     led_init();
+	motor_init(mcpwm_cmpr_handle);
 
     return;
 }

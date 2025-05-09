@@ -7,14 +7,14 @@
 #include "gatt_svc.h"
 #include "common.h"
 #include "heart_rate.h"
-#include "led.h"
+#include "motor.h"
 
 /* Private function declarations */
 static int heart_rate_chr_access(uint16_t conn_handle, uint16_t attr_handle,
                                  struct ble_gatt_access_ctxt *ctxt, void *arg);
-static int led_chr_access(uint16_t conn_handle, uint16_t attr_handle,
+static int motor_chr_access(uint16_t conn_handle, uint16_t attr_handle,
                           struct ble_gatt_access_ctxt *ctxt, void *arg);
-
+						  
 /* Private variables */
 /* Heart rate service */
 static const ble_uuid16_t heart_rate_svc_uuid = BLE_UUID16_INIT(0x180D);
@@ -29,8 +29,8 @@ static bool heart_rate_ind_status = false;
 
 /* Automation IO service */
 static const ble_uuid16_t auto_io_svc_uuid = BLE_UUID16_INIT(0x1815);
-static uint16_t led_chr_val_handle;
-static const ble_uuid128_t led_chr_uuid =
+static uint16_t motor_chr_val_handle;
+static const ble_uuid128_t motor_chr_uuid =
     BLE_UUID128_INIT(0x23, 0xd1, 0xbc, 0xea, 0x5f, 0x78, 0x23, 0x15, 0xde, 0xef,
                      0x12, 0x12, 0x25, 0x15, 0x00, 0x00);
 
@@ -55,11 +55,11 @@ static const struct ble_gatt_svc_def gatt_svr_svcs[] = {
         .type = BLE_GATT_SVC_TYPE_PRIMARY,
         .uuid = &auto_io_svc_uuid.u,
         .characteristics =
-            (struct ble_gatt_chr_def[]){/* LED characteristic */
-                                        {.uuid = &led_chr_uuid.u,
-                                         .access_cb = led_chr_access,
+            (struct ble_gatt_chr_def[]){/* Motor characteristic */
+                                        {.uuid = &motor_chr_uuid.u,
+                                         .access_cb = motor_chr_access,
                                          .flags = BLE_GATT_CHR_F_WRITE,
-                                         .val_handle = &led_chr_val_handle},
+                                         .val_handle = &motor_chr_val_handle},
                                         {0}},
     },
 
@@ -112,13 +112,13 @@ error:
     return BLE_ATT_ERR_UNLIKELY;
 }
 
-static int led_chr_access(uint16_t conn_handle, uint16_t attr_handle,
+static int motor_chr_access(uint16_t conn_handle, uint16_t attr_handle,
                           struct ble_gatt_access_ctxt *ctxt, void *arg) {
     /* Local variables */
     int rc;
 
     /* Handle access events */
-    /* Note: LED characteristic is write only */
+    /* Note: Motor characteristic is write only */
     switch (ctxt->op) {
 
     /* Write characteristic event */
@@ -134,16 +134,16 @@ static int led_chr_access(uint16_t conn_handle, uint16_t attr_handle,
         }
 
         /* Verify attribute handle */
-        if (attr_handle == led_chr_val_handle) {
+        if (attr_handle == motor_chr_val_handle) {
             /* Verify access buffer length */
             if (ctxt->om->om_len == 1) {
-                /* Turn the LED on or off according to the operation bit */
+                /* Turn the Motor on or off according to the operation bit */
                 if (ctxt->om->om_data[0]) {
-                    led_on();
-                    ESP_LOGI(TAG, "led turned on!");
+                    motor_on();
+                    ESP_LOGI(TAG, "motor turned on!");
                 } else {
-                    led_off();
-                    ESP_LOGI(TAG, "led turned off!");
+                    motor_off();
+                    ESP_LOGI(TAG, "motor turned off!");
                 }
             } else {
                 goto error;
@@ -159,7 +159,7 @@ static int led_chr_access(uint16_t conn_handle, uint16_t attr_handle,
 
 error:
     ESP_LOGE(TAG,
-             "unexpected access operation to led characteristic, opcode: %d",
+             "unexpected access operation to motor characteristic, opcode: %d",
              ctxt->op);
     return BLE_ATT_ERR_UNLIKELY;
 }

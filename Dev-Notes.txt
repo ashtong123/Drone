@@ -31,3 +31,28 @@ Update 2:
 after significant struggle, I was able to make th Beacon example work in my project. The main issue was, I suspect, with the sdkconfig file. I needed to enable bt and enable nimble in that sdkconfig file for everything else to work. 
 
 Originally, I had organized the bluetooth code into a separate component, along with the adc, i2c, and mcpwm code, primarily for consistency and organizational purposes. However, while troubleshooting, I deleted the component and instead organized the bluetooth code into the main component under the "srcs" and "include" directories. However, as I already mentioned, I don't believe that the organization of the code into a component was the reason for the issues I was experiencing. I am busy now, but when I have some time later I plan to recreate the nimble component and move the bluetooth code back into it. 
+
+5/9/2025:
+Yesterday, I added the GAP connection and GATT server to the code so that the
+board (GATT server) can communicate with another device, such as a cellphone or
+computer (GATT client) to transfer data or commands in either direction.
+
+Currently, the code is directly from the ESP IDF examples, so the communication consists
+of the GATT client being able to send an ON or OFF command to the LED, 
+and the GATT server sendind (either via indication or via client read) randomly
+generated heartbeat data.
+
+What I want the comms to consist of is control data (which could be a lot of different
+things) from the client to the server, and kinetics data as an indication
+from the server to the client. 
+
+The control data should start simple, just turn the motors on (maybe at 1/2 max speed)
+or turn them off. The kinetics data should also start simple, initially just one 
+piece of the accelerometer or gyroscope data. 
+
+Eventually, I want control to be in the form of 3D direction (move up, down, side to side,
+front to back, pitch, roll, yaw)
+
+The goal for the kinetics data is less clear, in general more data is better, but 
+the data is mainly to inform design/debugging, so what data is sent will likely depend
+on where I am in the design process and what issues need to be debugged. 

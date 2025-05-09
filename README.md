@@ -4,6 +4,10 @@ of the following:
  - PWM controlled brushed DC motors with propellers
 	- Flyback diodes and amplifying BJT transistors for each
  - GY-521 gyroscope/accelerometer module
+	    //
+        //for register addresses and meaning see the instructions on page 37:
+        //https://www.haoyuelectronics.com/Attachment/GY-521/mpu6050.pdf
+        
  - HC-SR04 Ultrasonic sensor module 
  - A 3D printed frame
  - Perfboard holding the electrical components together
