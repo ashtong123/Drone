@@ -56,3 +56,24 @@ front to back, pitch, roll, yaw)
 The goal for the kinetics data is less clear, in general more data is better, but 
 the data is mainly to inform design/debugging, so what data is sent will likely depend
 on where I am in the design process and what issues need to be debugged. 
+
+5/9/2025 PM update:
+I played around with the bluetooth code, and I believe I have the following implemented, although
+I won't be able to test it until later today at the earliest:
+1. MCPWM control from a bluetooth client, all 4 motors can be turned on at full speed or off
+2. On-board LED turns on when BT connected, off when disconnected. 
+3. I added a schematic showing the wiring of external components, which currently consists of 
+	a. 3.3v LiPo battery
+	b. 4 motors, each with flyback diodes and amplifying transistors to allow them to be
+		controlled by PWM
+	c. The GY-521 accelerometer/gyroscope
+
+The next few things on the list are:
+1. test the BLE MCPWM control, using a logic analyzer would be easiest/most accurate method
+2. Test the on-board LED functionality
+3. Verify the accuracy of the schematic, also, make a better schematic
+4. Replace the heart-rate indication with feedback of sensor data from the drone to the GATT client
+5. Add more sensors, probably will use an ultrasonic for z-height detection (although this will
+only work at limited pitch/roll angles)
+6. Print the drone body 
+7. Wire up the remaining components
