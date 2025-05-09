@@ -24,7 +24,7 @@ void nimble_host_config_init(void) {
     ble_store_config_init();
 }
 
-void nimble_init(mcpwm_cmpr_handle_t *mcpwm_cmpr_handle)
+void nimble_init(mcpwm_cmpr_handle_t *cmpr_handles)
 {
     /* Local variables */
     int rc;
@@ -69,7 +69,7 @@ void nimble_init(mcpwm_cmpr_handle_t *mcpwm_cmpr_handle)
     
     /* Connection indication LED Init */
     led_init();
-	motor_init(mcpwm_cmpr_handle);
+	motor_init(cmpr_handles);
 
     return;
 }

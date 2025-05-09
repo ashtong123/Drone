@@ -15,9 +15,9 @@ static void nimble_host_task(void *param);
 
 
 /* Private variables */
-static int adc_raw[2][10];
-static adc_oneshot_unit_handle_t adc_oneshot_unit_handle;
-static mcpwm_cmpr_handle_t mcpwm_cmpr_handle;
+//Motor m1-m4 PWM control handles
+static mcpwm_cmpr_handle_t cmpr_handles[4];
+//GY-521 coms i2c handle
 static i2c_master_dev_handle_t i2c_master_dev_handle;
 
 
@@ -35,7 +35,8 @@ static void nimble_host_task(void *param)
     vTaskDelete(NULL);
 }
 
-static void heart_rate_task(void *param) {
+static void heart_rate_task(void *param) 
+{
     /* Task entry log */
     ESP_LOGI(TAG, "heart rate task has been started!");
 
@@ -59,22 +60,10 @@ static void heart_rate_task(void *param) {
 
 
 /* Configurations */
-void adc_oneshot_config_main()
-{
-    /* ----- INITIALIZE AND CONFIGURE ADC_ONESHOT ----- */
-    adc_oneshot_init(ADC_UNIT_2, 0, ADC_ULP_MODE_DISABLE, &adc_oneshot_unit_handle);
-    adc_oneshot_config(
-            ADC_ATTEN_DB_12, 
-            ADC_BITWIDTH_DEFAULT, 
-            adc_oneshot_unit_handle, 
-            ADC_CHANNEL_0);
-    return;
-}
-
 void mcpwm_config_main()
 {
     /* ----- INITIALIZE AND CONFIGURE MCPWM ----- */
-    //TIMER CONFIG 
+    //MCPWM TIMER CONFIG 
     mcpwm_timer_handle_t mcpwm_timer_handle = NULL;
     mcpwm_timer_config(
             0, 
@@ -93,50 +82,83 @@ void mcpwm_config_main()
     mcpwm_oper_handle_t mcpwm_oper_handle = NULL;
     mcpwm_operator_config(0, 0, 0, 0, 0, 0, 0, 0, &mcpwm_oper_handle);
 
+
+	/* Motor 1 setup */
     //MCPWM COMPARATOR CONFIG
-    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_cmpr_handle);
-
+    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle, &cmpr_handles[0]);
     //MCPWM GENERATOR CONFIG
-    mcpwm_gen_handle_t mcpwm_gen_handle = NULL;
-    mcpwm_generator_config(27, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle);
-
+    mcpwm_gen_handle_t mcpwm_gen_handle_m1 = NULL;
+    mcpwm_generator_config(27, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle_m1); //GPIO27
+	
+	/* Motor 2 setup */
+    //MCPWM COMPARATOR CONFIG
+    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle, &cmpr_handles[1]);
+    //MCPWM GENERATOR CONFIG
+    mcpwm_gen_handle_t mcpwm_gen_handle_m2 = NULL;
+    mcpwm_generator_config(14, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle_m2); //GPIO 14
     
+	/* Motor 3 setup */
+    //MCPWM COMPARATOR CONFIG
+    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle, &cmpr_handles[2]); 
+    //MCPWM GENERATOR CONFIG
+    mcpwm_gen_handle_t mcpwm_gen_handle_m3 = NULL;
+    mcpwm_generator_config(13, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle_m3); //GPIO 13
+	
+	/* Motor 4 setup */
+    //MCPWM COMPARATOR CONFIG
+    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle, &cmpr_handles[3]);
+    //MCPWM GENERATOR CONFIG
+    mcpwm_gen_handle_t mcpwm_gen_handle_m4 = NULL;
+    mcpwm_generator_config(12, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle_m4); //GPIO 12
+	
+	//Combine motor 1-4 handles into array
+	mcpwm_gen_handle_t gen_handles[4] = {
+		mcpwm_gen_handle_m1, 
+		mcpwm_gen_handle_m2, 
+		mcpwm_gen_handle_m3,
+		mcpwm_gen_handle_m4};
+	
     //SETUP MCPWM TIMER
     mcpwm_timer_enable(mcpwm_timer_handle);
     mcpwm_timer_start_stop(mcpwm_timer_handle, MCPWM_TIMER_START_NO_STOP);
     mcpwm_operator_connect_timer(mcpwm_oper_handle, mcpwm_timer_handle);
-    mcpwm_comparator_set_compare_value(mcpwm_cmpr_handle, 0);
-    
-    //SETUP MCPWM GENERATOR BEHAVIOR FOR HIGH DUTY CYCLE PORTION
+	
+	//initialize motors m1-m4 to off (0 duty cycle)
+	for(int i = 0; i < 4; ++i)
+		mcpwm_comparator_set_compare_value(cmpr_handles[i], 0);
+	
+    //SETUP MCPWM GENERATOR BEHAVIOR FOR HIGH DUTY CYCLE PORTION for motors m1-m4
     //timer will count up until reaching 0 (overflow) then, set high on 0
-    mcpwm_gen_timer_event_action_t mcpwm_gen_timer_event_action = {
-        .direction = MCPWM_TIMER_DIRECTION_UP,
-        .event = MCPWM_TIMER_EVENT_EMPTY,
-        .action = MCPWM_GEN_ACTION_HIGH,
-    };
-        
-    ESP_ERROR_CHECK(
-            mcpwm_generator_set_actions_on_timer_event(
-                mcpwm_gen_handle, 
-                mcpwm_gen_timer_event_action,
-                MCPWM_GEN_TIMER_EVENT_ACTION_END()));
+	for(i = 0; i < 4; ++i) {
+		mcpwm_gen_timer_event_action_t mcpwm_gen_timer_event_action = {
+			.direction = MCPWM_TIMER_DIRECTION_UP,
+			.event = MCPWM_TIMER_EVENT_EMPTY,
+			.action = MCPWM_GEN_ACTION_HIGH,
+		};
+			
+		ESP_ERROR_CHECK(
+				mcpwm_generator_set_actions_on_timer_event(
+					gen_handles[i], 
+					mcpwm_gen_timer_event_action,
+					MCPWM_GEN_TIMER_EVENT_ACTION_END()));
 
 
-    //SETUP MCPWM GENERATOR BEHAVIOR FOR LOW DUTY CYCLE PORTION
-    //timer will count up until reaching compare value, then set low on compare value,
-    //thus the duty cycle will increase proportionally to the compare value,
-    //with a higher compare value corresponding to a longer duty cycle
-    mcpwm_gen_compare_event_action_t mcpwm_gen_compare_event_action = {
-        .direction = MCPWM_TIMER_DIRECTION_UP,
-        .comparator = mcpwm_cmpr_handle,
-        .action = MCPWM_GEN_ACTION_LOW,
-    };
-    ESP_ERROR_CHECK(
-            mcpwm_generator_set_actions_on_compare_event(
-                mcpwm_gen_handle,
-                mcpwm_gen_compare_event_action,
-                MCPWM_GEN_COMPARE_EVENT_ACTION_END()));
-
+		//SETUP MCPWM GENERATOR BEHAVIOR FOR LOW DUTY CYCLE PORTION
+		//timer will count up until reaching compare value, then set low on compare value,
+		//thus the duty cycle will increase proportionally to the compare value,
+		//with a higher compare value corresponding to a longer duty cycle
+		mcpwm_gen_compare_event_action_t mcpwm_gen_compare_event_action = {
+			.direction = MCPWM_TIMER_DIRECTION_UP,
+			.comparator = cmpr_handles[i],
+			.action = MCPWM_GEN_ACTION_LOW,
+		};
+		ESP_ERROR_CHECK(
+				mcpwm_generator_set_actions_on_compare_event(
+					gen_handles[i],
+					mcpwm_gen_compare_event_action,
+					MCPWM_GEN_COMPARE_EVENT_ACTION_END()));
+	}
+	
     return;
 }
 
@@ -159,7 +181,7 @@ void app_main(void)
     /* ----- INITIALIZE THE COMPONENTS BEING USED ----- */
     mcpwm_config_main(&mcpwm_cmpr_handle);                  //CONFIG AND INIT MCPWM
     i2c_master_config_main(&i2c_master_dev_handle);         //CONFIG AND INIT I2C MASTER
-    nimble_init(&mcpwm_cmpr_handle);                        //CONFIG AND INIT NIMBLE 
+    nimble_init(&cmpr_handles);                        //CONFIG AND INIT NIMBLE 
     
 	
 	/* ----- START ANY THREADS ----- */

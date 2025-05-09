@@ -19,6 +19,6 @@
 uint8_t get_motor_state(void);
 void motor_on(void);
 void motor_off(void);
-void motor_init(void);
+void motor_init(mcpwm_cmpr_handle_t *cmpr_handles);
 
 #endif // MOTOR_H
