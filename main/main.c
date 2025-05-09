@@ -35,6 +35,27 @@ static void nimble_host_task(void *param)
     vTaskDelete(NULL);
 }
 
+static void heart_rate_task(void *param) {
+    /* Task entry log */
+    ESP_LOGI(TAG, "heart rate task has been started!");
+
+    /* Loop forever */
+    while (1) {
+        /* Update heart rate value every 1 second */
+        update_heart_rate();
+        ESP_LOGI(TAG, "heart rate updated to %d", get_heart_rate());
+
+        /* Send heart rate indication if enabled */
+        send_heart_rate_indication();
+
+        /* Sleep */
+        vTaskDelay(HEART_RATE_TASK_PERIOD);
+    }
+
+    /* Clean up at exit */
+    vTaskDelete(NULL);
+}
+
 
 
 /* Configurations */
@@ -143,7 +164,8 @@ void app_main(void)
 	
 	/* ----- START ANY THREADS ----- */
     xTaskCreate(nimble_host_task, "NimBLE Host", 4*1024, NULL, 5, NULL);
-    
+    xTaskCreate(heart_rate_task, "Heart Rate", 4*1024, NULL, 5, NULL);
+
     
 	/* ----- READ FROM ADC_ONESHOT AND USE VALUE TO SET MCPWM COMPARE VALUE ----- */
     while(1) {

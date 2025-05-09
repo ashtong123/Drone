@@ -3,6 +3,8 @@
 
 #include "common.h"
 #include "gap.h"
+#include "gatt_svc.h"
+#include "heart_rate.h"
 
 /* Library function declarations */
 void ble_store_config_init(void);
