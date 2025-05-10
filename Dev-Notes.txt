@@ -70,7 +70,7 @@ I won't be able to test it until later today at the earliest:
 
 The next few things on the list are:
 1. test the BLE MCPWM control, using a logic analyzer would be easiest/most accurate method
-2. Test the on-board LED functionality
+$$ 2. Test the on-board LED functionality
 3. Verify the accuracy of the schematic, also, make a better schematic
 4. Replace the heart-rate indication with feedback of sensor data from the drone to the GATT client
 5. Add more sensors, probably will use an ultrasonic for z-height detection (although this will
