@@ -8,6 +8,7 @@
 #include "common.h"
 #include "gatt_svc.h"
 #include "led.h"
+#include "motor.h"
 
 /* Private function declarations */
 inline static void format_addr(char *addr_str, uint8_t addr[]);
@@ -189,6 +190,7 @@ static int gap_event_handler(struct ble_gap_event *event, void *arg) {
                  event->disconnect.reason);
 
 		led_off();
+        motor_off();
         /* Restart advertising */
         start_advertising();
         return rc;
