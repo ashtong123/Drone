@@ -139,11 +139,11 @@ static int motor_chr_access(uint16_t conn_handle, uint16_t attr_handle,
             if (ctxt->om->om_len == 1) {
                 /* Turn the Motor on or off according to the operation bit */
                 if (ctxt->om->om_data[0]) {
+                    ESP_LOGI(TAG, "Turning on the motor from the GATT srv!");
                     motor_on();
-                    ESP_LOGI(TAG, "motor turned on!");
                 } else {
+                    ESP_LOGI(TAG, "Turning off the motor from the GATT srv!");
                     motor_off();
-                    ESP_LOGI(TAG, "motor turned off!");
                 }
             } else {
                 goto error;

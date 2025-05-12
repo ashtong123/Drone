@@ -1,5 +1,6 @@
 /* Includes */
 #include <stdio.h>
+#include <stdlib.h>
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "adc_init_config.h"
@@ -16,7 +17,6 @@ static void nimble_host_task(void *param);
 
 /* Private variables */
 //Motor m1-m4 PWM control handles
-static mcpwm_cmpr_handle_t cmpr_handles[4];
 //GY-521 coms i2c handle
 static i2c_master_dev_handle_t i2c_master_dev_handle;
 
@@ -60,7 +60,7 @@ static void heart_rate_task(void *param)
 
 
 /* Configurations */
-void mcpwm_config_main()
+void mcpwm_config_main(mcpwm_cmpr_handle_t *cmpr_handles)
 {
     /* ----- INITIALIZE AND CONFIGURE MCPWM ----- */
     //MCPWM TIMER CONFIG 
@@ -78,38 +78,44 @@ void mcpwm_config_main()
                                     // 20,000,000 ----- * ---  ------- = 20,000 cycle/s = 20kHz
                                     //             s     1000   ticks
 
-    //MCPWM OPERATOR CONFIG
-    mcpwm_oper_handle_t mcpwm_oper_handle = NULL;
-    mcpwm_operator_config(0, 0, 0, 0, 0, 0, 0, 0, &mcpwm_oper_handle);
+    //MCPWM OPERATOR CONFIG (each operator handles 2 gen/cmpr)
+    //Operator 1 (m1, m2)
+    mcpwm_oper_handle_t mcpwm_oper_handle_1 = NULL;
+    mcpwm_operator_config(0, 0, 0, 0, 0, 0, 0, 0, &mcpwm_oper_handle_1);
+
+    //Operator 2 (m3, m4)
+    mcpwm_oper_handle_t mcpwm_oper_handle_2 = NULL;
+    mcpwm_operator_config(0, 0, 0, 0, 0, 0, 0, 0, &mcpwm_oper_handle_2);
+
 
 
 	/* Motor 1 setup */
     //MCPWM COMPARATOR CONFIG
-    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle, &cmpr_handles[0]);
+    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle_1, &cmpr_handles[0]);
     //MCPWM GENERATOR CONFIG
     mcpwm_gen_handle_t mcpwm_gen_handle_m1 = NULL;
-    mcpwm_generator_config(27, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle_m1); //GPIO27
+    mcpwm_generator_config(27, 0, 0, 0, 0, 0, mcpwm_oper_handle_1, &mcpwm_gen_handle_m1); //GPIO27
 	
 	/* Motor 2 setup */
     //MCPWM COMPARATOR CONFIG
-    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle, &cmpr_handles[1]);
+    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle_1, &cmpr_handles[1]);
     //MCPWM GENERATOR CONFIG
     mcpwm_gen_handle_t mcpwm_gen_handle_m2 = NULL;
-    mcpwm_generator_config(14, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle_m2); //GPIO 14
+    mcpwm_generator_config(14, 0, 0, 0, 0, 0, mcpwm_oper_handle_1, &mcpwm_gen_handle_m2); //GPIO 14
     
 	/* Motor 3 setup */
     //MCPWM COMPARATOR CONFIG
-    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle, &cmpr_handles[2]); 
+    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle_2, &cmpr_handles[2]); 
     //MCPWM GENERATOR CONFIG
     mcpwm_gen_handle_t mcpwm_gen_handle_m3 = NULL;
-    mcpwm_generator_config(13, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle_m3); //GPIO 13
+    mcpwm_generator_config(13, 0, 0, 0, 0, 0, mcpwm_oper_handle_2, &mcpwm_gen_handle_m3); //GPIO 13
 	
 	/* Motor 4 setup */
     //MCPWM COMPARATOR CONFIG
-    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle, &cmpr_handles[3]);
+    mcpwm_comparator_config(0, 0, 0, 0, mcpwm_oper_handle_2, &cmpr_handles[3]);
     //MCPWM GENERATOR CONFIG
     mcpwm_gen_handle_t mcpwm_gen_handle_m4 = NULL;
-    mcpwm_generator_config(12, 0, 0, 0, 0, 0, mcpwm_oper_handle, &mcpwm_gen_handle_m4); //GPIO 12
+    mcpwm_generator_config(12, 0, 0, 0, 0, 0, mcpwm_oper_handle_2, &mcpwm_gen_handle_m4); //GPIO 12
 	
 	//Combine motor 1-4 handles into array
 	mcpwm_gen_handle_t gen_handles[4] = {
@@ -121,15 +127,16 @@ void mcpwm_config_main()
     //SETUP MCPWM TIMER
     mcpwm_timer_enable(mcpwm_timer_handle);
     mcpwm_timer_start_stop(mcpwm_timer_handle, MCPWM_TIMER_START_NO_STOP);
-    mcpwm_operator_connect_timer(mcpwm_oper_handle, mcpwm_timer_handle);
-	
+    mcpwm_operator_connect_timer(mcpwm_oper_handle_1, mcpwm_timer_handle);
+	mcpwm_operator_connect_timer(mcpwm_oper_handle_2, mcpwm_timer_handle);
+
 	//initialize motors m1-m4 to off (0 duty cycle)
 	for(int i = 0; i < 4; ++i)
 		mcpwm_comparator_set_compare_value(cmpr_handles[i], 0);
 	
     //SETUP MCPWM GENERATOR BEHAVIOR FOR HIGH DUTY CYCLE PORTION for motors m1-m4
     //timer will count up until reaching 0 (overflow) then, set high on 0
-	for(i = 0; i < 4; ++i) {
+	for(int i = 0; i < 4; ++i) {
 		mcpwm_gen_timer_event_action_t mcpwm_gen_timer_event_action = {
 			.direction = MCPWM_TIMER_DIRECTION_UP,
 			.event = MCPWM_TIMER_EVENT_EMPTY,
@@ -179,10 +186,10 @@ void app_main(void)
     const TickType_t xDelay = 1000 / portTICK_PERIOD_MS; //control system refresh rate 
 	
     /* ----- INITIALIZE THE COMPONENTS BEING USED ----- */
-    mcpwm_config_main(&mcpwm_cmpr_handle);                  //CONFIG AND INIT MCPWM
-    i2c_master_config_main(&i2c_master_dev_handle);         //CONFIG AND INIT I2C MASTER
-    nimble_init(&cmpr_handles);                        //CONFIG AND INIT NIMBLE 
-    
+    mcpwm_cmpr_handle_t *cmpr_handles = malloc(2*sizeof(mcpwm_cmpr_handle_t));
+    mcpwm_config_main(cmpr_handles);                  //CONFIG AND INIT MCPWM
+    i2c_master_config_main();         //CONFIG AND INIT I2C MASTER
+    nimble_init(cmpr_handles);                        //CONFIG AND INIT NIMBLE 
 	
 	/* ----- START ANY THREADS ----- */
     xTaskCreate(nimble_host_task, "NimBLE Host", 4*1024, NULL, 5, NULL);
@@ -254,4 +261,6 @@ void app_main(void)
 		/* Refresh rate delay (may not be needed) */
 		vTaskDelay(xDelay);
     }
+
+    free(cmpr_handles);    
 }
