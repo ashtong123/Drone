@@ -69,11 +69,37 @@ I won't be able to test it until later today at the earliest:
 	c. The GY-521 accelerometer/gyroscope
 
 The next few things on the list are:
-1. test the BLE MCPWM control, using a logic analyzer would be easiest/most accurate method
-2. Test the on-board LED functionality
+# 1. test the BLE MCPWM control, using a logic analyzer would be easiest/most accurate method
+# 2. Test the on-board LED functionality
 3. Verify the accuracy of the schematic, also, make a better schematic
 4. Replace the heart-rate indication with feedback of sensor data from the drone to the GATT client
 5. Add more sensors, probably will use an ultrasonic for z-height detection (although this will
 only work at limited pitch/roll angles)
 6. Print the drone body 
-7. Wire up the remaining components
+# 7. Wire up the remaining components --> Done up to current sensor suite, probably need to add more
+sensors, currently we only have the accelerometer/gyroscope
+
+------------------------
+SENSOR SUITE:
+The current sensor suite must estimate 6 state parameters:
+x, y, z, pitch, roll, yaw
+
+x, y, and z are to be estimated by double integrating the accelerometer values 
+with plans to add an ultrasonic sensor so that z can be estimated using both sensors
+
+pitch and roll are estimated by a combination of the following:
+a. integration of the gyroscope values
+b. instantaneous measurement by the accelerometer (proportion of z/x or z/y acceleration) 
+allows us to determine pitch and roll using trigonometry
+
+yaw is estimated by integration of the gyroscope values
+
+
+Therefore, x, y, and yaw are estimated using a single sensor each, and 
+z, pitch, and roll are each estimated using a combination of two sensors. 
+
+Fortunately, x, y, and yaw are not the most critical parameters for stability, assuming
+the drone is not flying in a constricted area. In other words, as long as pitch, roll,
+and z are stable, if the drone drifts in the x, y, or yaw DoF, that will probably be ok.
+
+------------------------
