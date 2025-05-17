@@ -11,9 +11,12 @@ static mcpwm_cmpr_handle_t *mcpwm_cmpr_handles_local;
 static uint8_t motor_state;
 
 void motor_on(void) { 
-    for (int i = 0; i < 4; ++i)
-		ESP_ERROR_CHECK(mcpwm_comparator_set_compare_value(mcpwm_cmpr_handles_local[i], (1000)));
-	ESP_LOGI(TAG, "Motors turned on!");
+	ESP_ERROR_CHECK(mcpwm_comparator_set_compare_value(mcpwm_cmpr_handles_local[0], (100)));
+	ESP_ERROR_CHECK(mcpwm_comparator_set_compare_value(mcpwm_cmpr_handles_local[1], (1000)));
+	ESP_ERROR_CHECK(mcpwm_comparator_set_compare_value(mcpwm_cmpr_handles_local[2], (100)));
+	ESP_ERROR_CHECK(mcpwm_comparator_set_compare_value(mcpwm_cmpr_handles_local[3], (1000)));	
+	
+    ESP_LOGI(TAG, "Motors turned on!");
 	motor_state = 1;
 }
 
